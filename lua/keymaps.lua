@@ -108,9 +108,11 @@ map("x", "<S-Tab>", "<gv", opts)
 
 -- Copy to system clipboard
 map("x", "\\y", '"+y', opts)
+map("x", "<C-c>", '"+y', opts)
 
 -- Cut to system clipboard
 map("x", "\\d", '"+d', opts)
+map("x", "<C-x>", '"+d', opts)
 
 ---- Hop keybindings
 --map(

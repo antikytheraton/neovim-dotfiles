@@ -5,6 +5,7 @@ if require("first_load")() then
 end
 
 vim.g.mapleader = ","
+vim.opt.mouse = 'a'
 
 require("plugins")
 require("keymaps")

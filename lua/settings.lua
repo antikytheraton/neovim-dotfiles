@@ -27,7 +27,6 @@ vim.o.undolevels = 1000
 
 -- Faster scrolling
 vim.o.lazyredraw = true
-vim.g.mouse = "a"
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
