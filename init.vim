@@ -150,7 +150,7 @@ set hidden
 set mouse=a
 set noshowmode
 set noshowmatch
-set nolazyredraw
+set lazyredraw
 set cmdheight=1
 set updatetime=300
 set shortmess+=c
@@ -173,7 +173,6 @@ syntax enable
 set laststatus=2
 
 " Uncomment to prevent non-normal modes showing in powerline and below powerline.
-"set noshowmode
 
 let g:ale_disable_lsp = 1
 
