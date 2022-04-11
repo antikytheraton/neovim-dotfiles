@@ -89,7 +89,7 @@ lspconfig.gopls.setup{
         test = true,
         tidy = true,
       },
-      usePlaceholders = true,
+      usePlaceholders = false,
       completeUnimported = true,
       staticcheck = false,
       matcher = "Fuzzy",
