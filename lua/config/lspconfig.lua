@@ -9,6 +9,7 @@ local function custom_on_attach(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
+
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
@@ -28,11 +29,10 @@ local function custom_on_attach(client, bufnr)
 	buf_set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 end
-
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -74,6 +74,7 @@ local servers = {
 	clangd = true,
 	dockerls = true,
 	vimls = true,
+	yamlls = true,
 	sumneko_lua = {
 		cmd = { "lua-language-server" },
 		settings = {
@@ -162,4 +163,3 @@ vim.notify = function(msg, log_level, _)
 		vim.api.nvim_echo({ { msg } }, true, {})
 	end
 end
-

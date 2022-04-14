@@ -120,13 +120,13 @@ return require("packer").startup(function()
 
 	-- Colorscheme
 	-- nightfox
---	use({
---		"EdenEast/nightfox.nvim",
---		config = function()
---			require("config.nightfox").setup()
---		end,
---		run = ':lua require("nightfox").compile()',
---	})
+	--	use({
+	--		"EdenEast/nightfox.nvim",
+	--		config = function()
+	--			require("config.nightfox").setup()
+	--		end,
+	--		run = ':lua require("nightfox").compile()',
+	--	})
 	-- material
 	use({
 		"marko-cerovac/material.nvim",

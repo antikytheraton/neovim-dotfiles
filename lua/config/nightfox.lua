@@ -2,7 +2,7 @@ local M = {}
 
 M.config = {
 	options = {
-		transparent = false, -- Disable setting background
+		transparent = true, -- Disable setting background
 		terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*)
 		dim_inactive = true, -- Non focused panes set to alternative background
 		styles = { -- Style to be applied to different syntax groups
