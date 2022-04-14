@@ -105,6 +105,7 @@ local servers = {
 			},
 		},
 	},
+	golangci_lint_ls = true,
 }
 
 local setup_server = function(server, config)

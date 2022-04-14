@@ -34,6 +34,36 @@ return require("packer").startup(function()
 	-- Nicer code action signs
 	use("kosayoda/nvim-lightbulb")
 
+	-- Misc
+	use("nvim-lua/plenary.nvim")
+	use("nvim-lua/popup.nvim")
+	use("kyazdani42/nvim-web-devicons")
+	use("nathom/filetype.nvim")
+	use("tmux-plugins/vim-tmux-focus-events")
+	use("christoomey/vim-tmux-navigator")
+
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("config.which-key").setup()
+		end,
+	})
+
+	-- Asynctasks
+	use("skywind3000/asyncrun.vim")
+	use("skywind3000/asynctasks.vim")
+
+	-- Comment toggler
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("config.comment").setup()
+		end,
+	})
+
+	-- Setting the commentstring based on the cursor location in a file
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -89,15 +119,6 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- Misc
-	use("nvim-lua/plenary.nvim")
-	use("nvim-lua/popup.nvim")
-	use("kyazdani42/nvim-web-devicons")
-	use("nathom/filetype.nvim")
-	use("tmux-plugins/vim-tmux-focus-events")
-	use("christoomey/vim-tmux-navigator")
-
-
 	-- Status bar
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -132,6 +153,53 @@ return require("packer").startup(function()
 		"marko-cerovac/material.nvim",
 		config = function()
 			require("config.material_theme").setup()
+		end,
+	})
+
+	-- Git
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("config.gitsigns").setup()
+		end,
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+
+	-- Markdown
+	use({
+		"iamcco/markdown-preview.nvim",
+		ft = "markdown",
+		run = "cd app && yarn install",
+	})
+
+	-- Lazygit in Neovim
+	use("kdheepak/lazygit.nvim")
+
+	-- Check git history
+	use("sindrets/diffview.nvim")
+
+	-- File manager
+	use({
+		"luukvbaal/nnn.nvim",
+		config = function()
+			require("config.nnn").setup()
+		end,
+	})
+
+	-- Highlight todo comments
+	use({
+		"folke/todo-comments.nvim",
+		config = function()
+			require("config.todo").setup()
+		end,
+		requires = "nvim-lua/plenary.nvim",
+	})
+
+	-- Terminal
+	use({
+		"akinsho/nvim-toggleterm.lua",
+		config = function()
+			require("config.terminal").setup()
 		end,
 	})
 
