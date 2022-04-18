@@ -2,12 +2,6 @@ local M = {}
 
 M.config = {
 	keywords = {
-		-- FIX: fix this later 🐛
-		-- TODO add some tests 😝
-		-- HACK hack added 👌
-		-- WARN this will be deprecated
-		-- PERF improvement 🚗
-		-- NOTE hint 📓
 		FIX = {
 			icon = " ", -- icon used for the sign, and in search results
 			color = "error", -- can be a hex color, or a named color (see below)

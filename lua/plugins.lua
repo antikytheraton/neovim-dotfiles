@@ -119,6 +119,15 @@ return require("packer").startup(function()
 		end,
 	})
 
+	-- Go development
+	use({
+		"ray-x/go.nvim",
+		config = function()
+			require("config.go").setup()
+		end,
+		ft = { "go", "gomod" },
+	})
+
 	-- Status bar
 	use({
 		"nvim-lualine/lualine.nvim",
