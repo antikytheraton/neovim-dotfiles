@@ -347,7 +347,11 @@ au FileType lua setlocal ts=2 sw=2 sts=2 et
 ""              git-fugitive
 """"""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gb :Git blame<cr>
-nnoremap <leader>gd :Gdiffsplit<cr>
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 nnoremap <leader>gr :GRead<cr>
 nnoremap <leader>gm :GMove<cr>
 nnoremap <leader>gw :GBrowse<cr>
@@ -417,6 +421,8 @@ let g:floaterm_keymap_new = '<c-n>'
 let g:floaterm_keymap_hide = '<c-n>'
 let g:floaterm_keymap_toggle = '<c-n>'
 let g:floaterm_wintype = 'split'
+"let g:floaterm_wintype = 'vsplit'
+"let g:floaterm_wintype = 'float'
 " Set floaterm gray when focus out
 " hi FloatermNC guibg=gray
 
@@ -442,6 +448,14 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>K :lua require'telescope.builtin'.lsp_references()<CR>
+nnoremap <leader>Ki :lua require'telescope.builtin'.lsp_implementations()<CR>
+nnoremap <leader>Ks :lua require'telescope.builtin'.spell_suggest()<CR>
+nnoremap <leader>gsta :lua require'telescope.builtin'.git_stash()<CR>
+nnoremap <leader>gst :lua require'telescope.builtin'.git_status()<CR>
+nnoremap <leader>gb :lua require'telescope.builtin'.git_branches()<CR>
+
+nnoremap <Leader>pp :lua require'telescope.builtin'.planets{}<CR>
 
 "----------------------------------------------
 " Searching

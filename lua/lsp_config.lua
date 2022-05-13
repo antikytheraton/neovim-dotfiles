@@ -16,12 +16,13 @@ local on_attach = function(client, bufnr)
 
   lsp_status.on_attach(client)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -47,30 +48,30 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
--- replace the default lsp diagnostic symbols
-local function lspSymbol(name, icon)
-	local hl = "DiagnosticSign" .. name
-	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+  -- replace the default lsp diagnostic symbols
+  local function lspSymbol(name, icon)
+    local hl = "DiagnosticSign" .. name
+    vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+  end
+
+  lspSymbol("Error", "")
+  lspSymbol("Info", "")
+  lspSymbol("Hint", "")
+  lspSymbol("Warn", "")
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = { prefix = "" },
+    signs = true,
+    underline = true,
+    update_in_insert = false, -- update diagnostics insert mode
+  })
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+
 end
 
-lspSymbol("Error", "")
-lspSymbol("Info", "")
-lspSymbol("Hint", "")
-lspSymbol("Warn", "")
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = { prefix = "" },
-	signs = true,
-	underline = true,
-	update_in_insert = false, -- update diagnostics insert mode
-})
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
-
-end
-
-lspconfig.gopls.setup{
-  cmd = {'gopls'},
+lspconfig.gopls.setup {
+  cmd = { 'gopls' },
   -- for postfix snippets and analyzers
   capabilities = capabilities,
   settings = {
@@ -102,7 +103,7 @@ lspconfig.gopls.setup{
   on_attach = on_attach,
 }
 
-lspconfig.jsonls.setup{
+lspconfig.jsonls.setup {
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -119,9 +120,9 @@ lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
     Lua = {
-      runtime = {version = "LuaJIT", path = runtime_path},
-      diagnostics = {globals = {"vim"}},
-      telemetry = {enable = false},
+      runtime = { version = "LuaJIT", path = runtime_path },
+      diagnostics = { globals = { "vim" } },
+      telemetry = { enable = false },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
         maxPreload = 2000,
@@ -130,6 +131,21 @@ lspconfig.sumneko_lua.setup {
     }
   }
 }
+
+--lspconfig.sqls.setup {
+--  capabilities = capabilities,
+--  on_attach = on_attach,
+--  settings = {
+--    sqls = {
+--      connections = {
+--        {
+--          driver = 'postgresql',
+--          dataSourceName = 'host=0.0.0.0 port=5432 user=postgres password=pass dbname=postgres sslmode=disable'
+--        }
+--      }
+--    }
+--  }
+--}
 
 local servers = {
   'golangci_lint_ls',
@@ -142,11 +158,12 @@ local servers = {
   'yamlls',
   'html',
   'dockerls',
-  --'sumneko_lua',
+  'sumneko_lua',
   'vimls',
   'tailwindcss',
   'terraform_lsp',
   'sqlls',
+  'hls',
 }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
@@ -192,7 +209,7 @@ end
 
 function GoImports(wait_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
@@ -206,4 +223,3 @@ function GoImports(wait_ms)
 end
 
 --vim.lsp.set_log_level("debug")
-
