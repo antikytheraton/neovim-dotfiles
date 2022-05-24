@@ -47,6 +47,7 @@ Plug 'tpope/vim-dadbod'       " database interface
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
 Plug 'folke/trouble.nvim'     " list project diagnostic errors
+Plug 'ggandor/lightspeed.nvim'
 " Formater
 Plug 'jiangmiao/auto-pairs'
 " Linter
