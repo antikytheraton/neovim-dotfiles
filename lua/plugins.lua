@@ -264,4 +264,14 @@ return require("packer").startup(function()
         "ggandor/lightspeed.nvim",
     })
 
+    -- HTTP client in Neovim
+    use({
+        "NTBBloodbath/rest.nvim",
+        config = function()
+            require("config.rest").setup()
+        end,
+        requires = { "nvim-lua/plenary.nvim" },
+        ft = { "http" },
+    })
+
 end)
