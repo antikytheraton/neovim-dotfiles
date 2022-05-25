@@ -145,6 +145,13 @@ return require("packer").startup(function()
         --after = { "nvim-gps", "nightfox.nvim" },
         after = { "nvim-gps", "material.nvim" },
     })
+    -- use({
+    --     "windwp/windline.nvim",
+    --     config = function()
+    --         -- require("wlsample.evil_line")
+    --         require("wlsample.bubble2")
+    --     end,
+    -- })
 
     -- Show scope in status bar
     use({
