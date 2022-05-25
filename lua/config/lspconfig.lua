@@ -25,7 +25,6 @@ local function custom_on_attach(client, bufnr)
     buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
@@ -39,25 +38,6 @@ local function custom_on_attach(client, bufnr)
     elseif client.resolved_capabilities.document_range_formatting then
         buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
-
-    local function lspSymbol(name, icon)
-        local hl = "DiagnosticSign" .. name
-        vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-    end
-
-    lspSymbol("Error", "")
-    lspSymbol("Info", "")
-    lspSymbol("Hint", "")
-    lspSymbol("Warn", "")
-
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = { prefix = "" },
-        signs = true,
-        underline = true,
-        update_in_insert = false, -- update diagnostics insert mode
-    })
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
 end
 

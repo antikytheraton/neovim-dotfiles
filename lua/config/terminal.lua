@@ -36,6 +36,7 @@ M.setup = function()
         return
     end
     terminal.setup(M.config)
+
 end
 
 return M

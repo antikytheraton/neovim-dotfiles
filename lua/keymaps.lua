@@ -11,8 +11,28 @@ map("n", "<leader>e", ":e.<cr>", opts)
 map("n", "<leader>v", ":vs.<cr>", opts)
 map("n", "<leader>h", ":Hexplore!<cr>", opts)
 map("n", "<leader>?", ":History<cr>", opts)
-map("n", "<leader>l", ":vsp<cr>", opts)
-map("n", "<leader>w", ":sp<cr>", opts)
+map("n", "<leader>|", ":vsp<cr>", opts)
+map("n", "<leader>-", ":sp<cr>", opts)
+
+-- floatterm
+vim.g.floaterm_keymap_new = '<c-n>'
+vim.g.floaterm_keymap_hide = '<c-n>'
+vim.g.floaterm_keymap_toggle = '<c-n>'
+vim.g.floaterm_wintype = 'float'
+
+-- toggleterm
+function _G.set_terminal_keymaps()
+    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+    vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+    vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+    vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+    vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+    vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+-- vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
 -- toggle theme
 map("n", "<leader>mm", "<cmd>lua require'material.functions'.toggle_style()<cr>", opts)

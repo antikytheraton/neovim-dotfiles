@@ -101,7 +101,6 @@ M.config = {
             "Comment Operator",
         },
         --["e"] = { "<ESC><cmd>'<,'>SnipRun<cr>", "Execute (sniprun)" },
-        ["e"] = { "<ESC><cmd>'<,'>SnipRun<cr>", "Execute (sniprun)" },
         ["g"] = {
             name = "Git",
             ["s"] = {
@@ -143,7 +142,7 @@ M.config = {
         ["W"] = { "<cmd>:lua require'utils'.sudo_write()<cr>", "Sudo Save" },
         ["q"] = { "<cmd>q!<cr>", "Quit" },
         [";"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment Operator" },
-        ["n"] = { "<cmd>NnnPicker<cr>", "nnn" },
+        ["e"] = { "<cmd>NnnPicker<cr>", "nnn" },
         ["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard manager" },
         ["b"] = {
             name = "Buffers",

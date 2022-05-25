@@ -217,6 +217,11 @@ return require("packer").startup(function()
             require("config.terminal").setup()
         end,
     })
+    use({
+        "voldikss/vim-floaterm",
+    })
+
+
 
 
     -- Fuzzy filtering

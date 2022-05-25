@@ -1,7 +1,7 @@
 local M = {}
 
-local status_ok, gps = pcall(require, "nvim-gps")
-if not status_ok then
+local present1, gps = pcall(require, "nvim-gps")
+if not present1 then
     return
 end
 
