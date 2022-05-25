@@ -229,9 +229,6 @@ return require("packer").startup(function()
         "voldikss/vim-floaterm",
     })
 
-
-
-
     -- Fuzzy filtering
     use({
         "nvim-telescope/telescope.nvim",
@@ -260,6 +257,11 @@ return require("packer").startup(function()
             { "nvim-telescope/telescope.nvim" },
             { "tami5/sqlite.lua" },
         },
+    })
+
+    -- Enhanced movement plugin
+    use({
+        "ggandor/lightspeed.nvim",
     })
 
 end)
