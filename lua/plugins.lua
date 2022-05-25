@@ -50,6 +50,7 @@ return require("packer").startup(function()
     use("wakatime/vim-wakatime")
     use("jiangmiao/auto-pairs")
     use("Yggdroot/indentLine")
+    use("pbrisbin/vim-mkdir")
 
     use({
         "folke/which-key.nvim",

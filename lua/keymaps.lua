@@ -18,7 +18,8 @@ map("n", "<leader>-", ":sp<cr>", opts)
 vim.g.floaterm_keymap_new = '<c-n>'
 vim.g.floaterm_keymap_hide = '<c-n>'
 vim.g.floaterm_keymap_toggle = '<c-n>'
-vim.g.floaterm_wintype = 'float'
+-- float | split | vsplit
+vim.g.floaterm_wintype = 'split'
 
 -- toggleterm
 function _G.set_terminal_keymaps()

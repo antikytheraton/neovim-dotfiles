@@ -7,9 +7,12 @@ end
 
 M.config = {
     options = {
-        section_separators = { "", "" },
-        component_separators = "|",
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         icons_enabled = true,
+        theme = 'auto',
+        always_divide_middle = true,
+        globalstatus = false,
     },
     sections = {
         lualine_a = { "mode" },

@@ -39,6 +39,63 @@ local function custom_on_attach(client, bufnr)
         buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
+    if client.server_capabilities.colorProvider then
+        require("config.tailwind_colors.lsp-documentcolors").buf_attach(bufnr, { single_column = true })
+    end
+
+    if client.name == "tsserver" then
+        client.resolved_capabilities.document_formatting = false
+        local ts_utils = require("nvim-lsp-ts-utils")
+
+        ts_utils.setup({
+            debug = false,
+            disable_commands = false,
+            enable_import_on_completion = true,
+
+            -- import all
+            import_all_timeout = 5000, -- ms
+            -- lower numbers = higher priority
+            import_all_priorities = {
+                same_file = 1, -- add to existing import statement
+                local_files = 2, -- git files or files with relative path markers
+                buffer_content = 3, -- loaded buffer content
+                buffers = 4, -- loaded buffer names
+            },
+            import_all_scan_buffers = 100,
+            import_all_select_source = false,
+            -- if false will avoid organizing imports
+            always_organize_imports = true,
+
+            -- filter diagnostics
+            filter_out_diagnostics_by_severity = {},
+            filter_out_diagnostics_by_code = {},
+
+            -- inlay hints
+            auto_inlay_hints = false,
+            inlay_hints_highlight = "Comment",
+            inlay_hints_priority = 200, -- priority of the hint extmarks
+            inlay_hints_throttle = 150, -- throttle the inlay hint request
+            inlay_hints_format = { -- format options for individual hint kind
+                Type = {},
+                Parameter = {},
+                Enum = {},
+            },
+
+            -- update imports on file move
+            update_imports_on_move = false,
+            require_confirmation_on_move = false,
+            watch_dir = nil,
+        })
+
+        -- required to fix code action ranges and filter diagnostics
+        ts_utils.setup_client(client)
+
+        -- no default maps, so you may want to define some here
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gO", ":TSLspOrganize<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gR", ":TSLspRenameFile<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", ":TSLspImportAll<CR>", opts)
+    end
+
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -64,6 +121,10 @@ local custom_init = function(client)
     client.config.flags.allow_incremental_sync = true
 end
 
+local prettierd = require("config/efm/prettierd")
+local shellcheck = require("config/efm/shellcheck")
+local shfmt = require("config/efm/shfmt")
+
 local function get_lua_runtime()
     local result = {}
     for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
@@ -82,6 +143,58 @@ local servers = {
     dockerls = true,
     vimls = true,
     yamlls = true,
+    efm = {
+        init_options = { documentFormatting = true },
+        root_dir = vim.loop.cwd,
+        settings = {
+            rootMarkers = { ".git/" },
+            languages = {
+                lua = { { formatCommand = "stylua -s --stdin-filepath ${INPUT} -", formatStdin = true } },
+                python = {
+                    { formatCommand = "black --fast -", formatStdin = true },
+                    {
+                        formatCommand = "isort --stdout --profile black -",
+                        formatStdin = true,
+                    },
+                },
+                typescript = { prettierd },
+                javascript = { prettierd },
+                typescriptreact = { prettierd },
+                javascriptreact = { prettierd },
+                yaml = { prettierd },
+                json = { prettierd },
+                html = { prettierd },
+                scss = { prettierd },
+                css = { prettierd },
+                markdown = { prettierd },
+                sh = { shellcheck, shfmt },
+                sql = {
+                    { formatCommand = "pg_format -u 1 -i", formatStdin = true },
+                },
+                fish = {
+                    { formatCommand = "fish_indent" },
+                },
+            },
+        },
+        filetypes = {
+            "css",
+            "fish",
+            "html",
+            "javascript",
+            "javascriptreact",
+            "json",
+            "lua",
+            "markdown",
+            "python",
+            "scss",
+            "sh",
+            "sql",
+            "ts",
+            "typescript",
+            "typescriptreact",
+            "yaml",
+        },
+    },
     sumneko_lua = {
         cmd = { "lua-language-server" },
         settings = {
@@ -141,7 +254,10 @@ local servers = {
                 gofumpt = false,
             }
         }
-    }
+    },
+    tsserver = {
+        init_options = require("nvim-lsp-ts-utils").init_options,
+    },
 }
 
 local setup_server = function(server, config)
