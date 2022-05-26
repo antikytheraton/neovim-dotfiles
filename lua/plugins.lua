@@ -24,6 +24,7 @@ return require("packer").startup(function()
             require("trouble").setup({ auto_preview = false, auto_fold = true, auto_close = true })
         end,
     })
+    use("folke/lsp-colors.nvim")
     use({
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
@@ -198,6 +199,9 @@ return require("packer").startup(function()
     -- Lazygit in Neovim
     use("kdheepak/lazygit.nvim")
 
+    -- Git blame
+    use("f-person/git-blame.nvim")
+
     -- Check git history
     use("sindrets/diffview.nvim")
 
@@ -272,6 +276,16 @@ return require("packer").startup(function()
         end,
         requires = { "nvim-lua/plenary.nvim" },
         ft = { "http" },
+    })
+
+    -- Color highlighter
+    use({
+        "norcalli/nvim-colorizer.lua",
+        cmd = { "ColorizerToggle" },
+        config = function()
+            require("colorizer").setup()
+        end,
+        ft = { "html", "css", "json", "yaml", "conf" },
     })
 
 end)
