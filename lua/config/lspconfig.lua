@@ -1,7 +1,8 @@
-local preset1, lspconfig = pcall(require, "lspconfig")
-local preset2, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+local presetn1, lspconfig = pcall(require, "lspconfig")
+local presetn2, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+local present3, null_ls = pcall(require, "null-ls")
 
-if not (preset1 and preset2) then
+if not (presetn1 and presetn2 and present3) then
     return
 end
 
@@ -19,7 +20,6 @@ local function custom_on_attach(client, bufnr)
 
     -- Mappings.
     local opts = { noremap = true, silent = true }
-
 
     buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -45,8 +45,9 @@ local function custom_on_attach(client, bufnr)
 
     if client.name == "tsserver" then
         client.resolved_capabilities.document_formatting = false
-        local ts_utils = require("nvim-lsp-ts-utils")
 
+        -- required to fix code action ranges and filter diagnostics
+        local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup({
             debug = false,
             disable_commands = false,
@@ -86,8 +87,6 @@ local function custom_on_attach(client, bufnr)
             require_confirmation_on_move = false,
             watch_dir = nil,
         })
-
-        -- required to fix code action ranges and filter diagnostics
         ts_utils.setup_client(client)
 
         -- no default maps, so you may want to define some here
@@ -95,7 +94,6 @@ local function custom_on_attach(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gR", ":TSLspRenameFile<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", ":TSLspImportAll<CR>", opts)
     end
-
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -122,8 +120,10 @@ local custom_init = function(client)
 end
 
 local prettierd = require("config/efm/prettierd")
+local eslint = require("config/efm/eslint")
 local shellcheck = require("config/efm/shellcheck")
 local shfmt = require("config/efm/shfmt")
+local rustfmt = require("config/efm/rustfmt")
 
 local function get_lua_runtime()
     local result = {}
@@ -144,10 +144,12 @@ local servers = {
     vimls = true,
     yamlls = true,
     efm = {
-        init_options = { documentFormatting = true },
         root_dir = vim.loop.cwd,
+        init_options = { documentFormatting = true, codeAction = true },
         settings = {
             rootMarkers = { ".git/" },
+            log_level = 1,
+            log_file = "~/efm.log",
             languages = {
                 lua = { { formatCommand = "stylua -s --stdin-filepath ${INPUT} -", formatStdin = true } },
                 python = {
@@ -157,16 +159,16 @@ local servers = {
                         formatStdin = true,
                     },
                 },
-                typescript = { prettierd },
-                javascript = { prettierd },
-                typescriptreact = { prettierd },
-                javascriptreact = { prettierd },
-                yaml = { prettierd },
-                json = { prettierd },
-                html = { prettierd },
-                scss = { prettierd },
-                css = { prettierd },
-                markdown = { prettierd },
+                typescript = { prettierd, eslint },
+                javascript = { prettierd, eslint },
+                typescriptreact = { prettierd, eslint },
+                javascriptreact = { prettierd, eslint },
+                yaml = { prettierd, eslint },
+                json = { prettierd, eslint },
+                html = { prettierd, eslint },
+                scss = { prettierd, eslint },
+                css = { prettierd, eslint },
+                markdown = { prettierd, eslint },
                 sh = { shellcheck, shfmt },
                 sql = {
                     { formatCommand = "pg_format -u 1 -i", formatStdin = true },
@@ -174,6 +176,7 @@ local servers = {
                 fish = {
                     { formatCommand = "fish_indent" },
                 },
+                rust = { rustfmt },
             },
         },
         filetypes = {
@@ -193,6 +196,7 @@ local servers = {
             "typescript",
             "typescriptreact",
             "yaml",
+            "rust",
         },
     },
     sumneko_lua = {
@@ -252,8 +256,8 @@ local servers = {
                 experimentalWatchedFileDelay = "100ms",
                 symbolMatcher = "fuzzy",
                 gofumpt = false,
-            }
-        }
+            },
+        },
     },
     tsserver = {
         init_options = require("nvim-lsp-ts-utils").init_options,
@@ -294,7 +298,6 @@ lspSymbol("Info", "")
 lspSymbol("Hint", "")
 lspSymbol("Warn", "")
 
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = { prefix = "" },
     signs = true,
@@ -303,7 +306,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
-
 
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level, _)

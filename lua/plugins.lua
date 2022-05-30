@@ -53,6 +53,7 @@ return require("packer").startup(function()
     use("Yggdroot/indentLine")
     use("pbrisbin/vim-mkdir")
 
+    -- Which key shortcuts helper
     use({
         "folke/which-key.nvim",
         config = function()
