@@ -199,6 +199,9 @@ return require("packer").startup(function()
 		run = "cd app && yarn install",
 	})
 
+	-- Git fugitive
+	use("tpope/vim-fugitive")
+
 	-- Lazygit in Neovim
 	use("kdheepak/lazygit.nvim")
 
