@@ -52,6 +52,8 @@ return require("packer").startup(function()
     use("jiangmiao/auto-pairs")
     use("Yggdroot/indentLine")
     use("pbrisbin/vim-mkdir")
+    use("tpope/vim-surround")
+    use("tpope/vim-sensible")
 
     -- Which key shortcuts helper
     use({
