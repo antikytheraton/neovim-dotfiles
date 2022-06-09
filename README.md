@@ -1,3 +1,7 @@
-# New LUA config
+# My NeoVim configuration on Lua
 
-moving all my config to lua
+![my config](screenshots/my_config.png)
+
+### Coding on Go
+![code](screenshots/code.png)
+
