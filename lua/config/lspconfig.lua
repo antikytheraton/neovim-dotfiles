@@ -1,8 +1,7 @@
-local presetn1, lspconfig = pcall(require, "lspconfig")
-local presetn2, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-local present3, null_ls = pcall(require, "null-ls")
+local present1, lspconfig = pcall(require, "lspconfig")
+local present2, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 
-if not (presetn1 and presetn2 and present3) then
+if not (present1 and present2) then
     return
 end
 
@@ -151,7 +150,7 @@ local servers = {
             log_level = 1,
             log_file = "~/efm.log",
             languages = {
-                lua = { { formatCommand = "stylua -s --stdin-filepath ${INPUT} -", formatStdin = true } },
+                -- lua = { { formatCommand = "stylua -s --stdin-filepath ${INPUT} -", formatStdin = true } },
                 python = {
                     { formatCommand = "black --fast -", formatStdin = true },
                     {
