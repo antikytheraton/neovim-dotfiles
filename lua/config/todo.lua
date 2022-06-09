@@ -5,18 +5,18 @@ M.config = {
         FIX = {
             icon = " ", -- icon used for the sign, and in search results
             color = "error", -- can be a hex color, or a named color (see below)
-            alt = { "fix", "bug", "BUG" }, -- a set of other keywords that all map to this FIX keywords
+            alt = { "fix", "FIX", "bug", "BUG" }, -- a set of other keywords that all map to this FIX keywords
             -- signs = false, -- configure signs for some keywords individually
         },
-        TODO = { icon = " ", color = "info", alt = { "todo" } },
-        HACK = { icon = " ", color = "warning", alt = { "hack" } },
+        TODO = { icon = " ", color = "info", alt = { "todo", "TODO" } },
+        HACK = { icon = " ", color = "warning", alt = { "hack", "HACK" } },
         WARN = {
             icon = " ",
             color = "warning",
-            alt = { "warn", "WARNING", "XXX" },
+            alt = { "warn", "WARNING", "WARN", "XXX" },
         },
-        PERF = { icon = " ", alt = { "perf" } },
-        NOTE = { icon = " ", color = "hint", alt = { "note", "info", "INFO" } },
+        PERF = { icon = " ", alt = { "perf", "PERF", "PERFORMANCE" } },
+        NOTE = { icon = " ", color = "hint", alt = { "note", "NOTE", "info", "INFO" } },
     },
     -- highlighting of the line containing the todo comment
     -- * before: highlights before the keyword (typically comment characters)
