@@ -57,7 +57,6 @@ return require("packer").startup(function()
     use("tmux-plugins/vim-tmux-focus-events")
     use("christoomey/vim-tmux-navigator")
     use("wakatime/vim-wakatime")
-    use("Yggdroot/indentLine")
     use("pbrisbin/vim-mkdir")
     use("tpope/vim-surround")
     use("tpope/vim-sensible")
@@ -77,6 +76,9 @@ return require("packer").startup(function()
             require("nvim-autopairs").setup()
         end,
     })
+
+    -- Indent lines
+    use("lukas-reineke/indent-blankline.nvim")
 
     -- Asynctasks
     use("skywind3000/asyncrun.vim")
