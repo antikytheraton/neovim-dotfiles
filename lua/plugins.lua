@@ -57,7 +57,6 @@ return require("packer").startup(function()
     use("tmux-plugins/vim-tmux-focus-events")
     use("christoomey/vim-tmux-navigator")
     use("wakatime/vim-wakatime")
-    use("jiangmiao/auto-pairs")
     use("Yggdroot/indentLine")
     use("pbrisbin/vim-mkdir")
     use("tpope/vim-surround")
@@ -68,6 +67,14 @@ return require("packer").startup(function()
         "folke/which-key.nvim",
         config = function()
             require("config.which-key").setup()
+        end,
+    })
+
+    -- Autopairs
+    use({
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup()
         end,
     })
 
