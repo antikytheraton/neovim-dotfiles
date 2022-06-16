@@ -104,6 +104,12 @@ return require("packer").startup(function()
         run = ":TSUpdate",
     })
     use("nvim-treesitter/nvim-treesitter-context")
+    use({
+        "lewis6991/spellsitter.nvim",
+        config = function()
+            require("spellsitter").setup()
+        end,
+    })
 
     use({
         "rmagatti/auto-session",
@@ -239,12 +245,22 @@ return require("packer").startup(function()
     -- Check git history
     use("sindrets/diffview.nvim")
 
-    -- File manager
+    -- -- File manager
+    -- use({
+    --     "luukvbaal/nnn.nvim",
+    --     config = function()
+    --         require("config.nnn").setup()
+    --     end,
+    -- })
     use({
-        "luukvbaal/nnn.nvim",
+        "kyazdani42/nvim-tree.lua",
         config = function()
-            require("config.nnn").setup()
+            require("config.nvim-tree").setup()
         end,
+        requires = {
+            "kyazdani42/nvim-web-devicons", -- optional, for file icon
+        },
+        tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
 
     -- Highlight todo comments

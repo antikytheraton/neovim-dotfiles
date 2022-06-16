@@ -49,7 +49,6 @@ M.config = {
         show_help = true, -- show help message on the command line when the popup is visible
     },
 
-
     opts = {
         mode = "n", -- NORMAL mode
         prefix = "<leader>",
@@ -142,7 +141,10 @@ M.config = {
         ["W"] = { "<cmd>:lua require'utils'.sudo_write()<cr>", "Sudo Save" },
         ["q"] = { "<cmd>q!<cr>", "Quit" },
         [";"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment Operator" },
-        ["e"] = { "<cmd>NnnPicker<cr>", "nnn" },
+        -- ["e"] = { "<cmd>NnnPicker<cr>", "nnn" },
+        ["e"] = { "<cmd>NvimTreeRefresh<cr><cmd>NvimTreeToggle<cr>", "nvim-tree" },
+        ["|"] = { "<cmd>vsp<cr>", "Window vertical split" },
+        ["-"] = { "<cmd>sp<cr>", "Window horizontal split" },
         ["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard manager" },
         ["b"] = {
             name = "Buffers",
@@ -295,15 +297,6 @@ M.config = {
                 '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
                 "Copy link to clipboard",
             },
-        },
-        ["h"] = {
-            name = "Hop",
-            ["c"] = { "<cmd>HopChar1<cr>", "Hop to single char" },
-            ["C"] = { "<cmd>HopChar2<cr>", "Hop to bigram" },
-            ["l"] = { "<cmd>HopLine<cr>", "Hop to line" },
-            ["L"] = { "<cmd>HopLineStart<cr>", "Hop to line start" },
-            ["p"] = { "<cmd>HopPattern<cr>", "Hop to pattern" },
-            ["w"] = { "<cmd>HopWord<cr>", "Hop to word" },
         },
         ["l"] = {
             name = "LSP",
