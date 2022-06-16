@@ -246,22 +246,22 @@ return require("packer").startup(function()
     use("sindrets/diffview.nvim")
 
     -- -- File manager
-    -- use({
-    --     "luukvbaal/nnn.nvim",
-    --     config = function()
-    --         require("config.nnn").setup()
-    --     end,
-    -- })
     use({
-        "kyazdani42/nvim-tree.lua",
+        "luukvbaal/nnn.nvim",
         config = function()
-            require("config.nvim-tree").setup()
+            require("config.nnn").setup()
         end,
-        requires = {
-            "kyazdani42/nvim-web-devicons", -- optional, for file icon
-        },
-        tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
+    -- use({
+    --     "kyazdani42/nvim-tree.lua",
+    --     config = function()
+    --         require("config.nvim-tree").setup()
+    --     end,
+    --     requires = {
+    --         "kyazdani42/nvim-web-devicons", -- optional, for file icon
+    --     },
+    --     tag = "nightly", -- optional, updated every week. (see issue #1193)
+    -- })
 
     -- Highlight todo comments
     use({

@@ -35,7 +35,7 @@ M.config = {
         highlight_opened_files = "none",
 
         indent_markers = {
-            enable = false,
+            enable = true,
         },
         icons = {
             padding = " ",

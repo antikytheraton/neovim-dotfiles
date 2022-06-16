@@ -7,7 +7,9 @@ map("c", "Q", "q", opts)
 -- Normal
 
 -- Hijacked Netrw
-map("n", "<c-b>", "<cmd>NvimTreeRefresh<cr><cmd>NvimTreeToggle<cr>", opts)
+-- map("n", "<c-b>", "<cmd>NvimTreeRefresh<cr><cmd>NvimTreeToggle<cr>", opts)
+-- map("n", "<c-b>", "<cmd>NnnExplorer<cr>", opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "<c-b>", "<cmd>NnnExplorer<cr>", opts)
 
 -- floatterm
 vim.g.floaterm_keymap_new = "<c-n>"
