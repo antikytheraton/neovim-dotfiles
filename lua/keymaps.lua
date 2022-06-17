@@ -15,8 +15,13 @@ map("c", "Q", "q", opts)
 vim.g.floaterm_keymap_new = "<c-n>"
 vim.g.floaterm_keymap_hide = "<c-n>"
 vim.g.floaterm_keymap_toggle = "<c-n>"
+vim.g.floaterm_width = 0.9
+vim.g.floaterm_height = 0.9
+vim.g.floaterm_autoclose = 2
+-- vim.g.border_chars = "─│─│┌┐┘└"
+vim.g.border_chars = "─│─│╭╮╯╰"
 -- float | split | vsplit
-vim.g.floaterm_wintype = "split"
+vim.g.floaterm_wintype = "float"
 
 -- toggleterm
 function _G.set_terminal_keymaps()

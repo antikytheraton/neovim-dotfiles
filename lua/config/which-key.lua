@@ -142,6 +142,10 @@ M.config = {
         ["q"] = { "<cmd>q!<cr>", "Quit" },
         [";"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment Operator" },
         ["e"] = { "<cmd>NnnPicker %:p:h<cr>", "nnn" },
+        -- ["e"] = {
+        --     "<cmd>FloatermNew --name=nnn nnn %:p:h<cr>",
+        --     "nnn",
+        -- },
         -- ["e"] = { "<cmd>NvimTreeRefresh<cr><cmd>NvimTreeToggle<cr>", "nvim-tree" },
         ["|"] = { "<cmd>vsp<cr>", "Window vertical split" },
         ["-"] = { "<cmd>sp<cr>", "Window horizontal split" },
@@ -232,6 +236,7 @@ M.config = {
         },
         ["g"] = {
             name = "Git",
+            ["z"] = { "<cmd>LazyGit<cr>", "Lazygit" },
             ["j"] = {
                 '<cmd>lua require"gitsigns".next_hunk()<cr>',
                 "Next Hunk",

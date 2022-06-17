@@ -8,7 +8,7 @@ M.config = {
         "function_declaration",
         "method_declaration",
         "call_expression",
-        "type_declaration",
+        -- "type_declaration",
         "struct_type",
         "interface_type",
         "if_statement",
