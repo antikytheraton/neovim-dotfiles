@@ -203,7 +203,7 @@ return require("packer").startup(function()
     use({
         "nvim-lualine/lualine.nvim",
         config = function()
-            require("config.lualine").setup()
+            require("config.lualine.evil_lualine").setup()
         end,
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
         -- after = { "nvim-gps", "nightfox.nvim" },

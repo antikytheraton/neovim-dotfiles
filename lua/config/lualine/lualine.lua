@@ -28,12 +28,12 @@ M.config = {
         lualine_z = { "location" },
     },
     inactive_sections = {
-        lualine_a = {},
+        lualine_a = { "filename" },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {},
+        lualine_z = { "location" },
     },
     extensions = { "quickfix", "toggleterm" },
 }
