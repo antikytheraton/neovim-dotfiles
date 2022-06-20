@@ -200,6 +200,7 @@ return require("packer").startup(function()
     })
 
     -- Status bar
+    use("arkav/lualine-lsp-progress")
     use({
         "nvim-lualine/lualine.nvim",
         config = function()
@@ -207,7 +208,7 @@ return require("packer").startup(function()
         end,
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
         -- after = { "nvim-gps", "nightfox.nvim" },
-        after = { "nvim-gps", "material.nvim" },
+        after = { "nvim-gps", "material.nvim", "lualine-lsp-progress" },
     })
     -- use({
     -- 	"windwp/windline.nvim",
