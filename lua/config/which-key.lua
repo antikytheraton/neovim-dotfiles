@@ -350,10 +350,15 @@ M.config = {
         },
         ["m"] = {
             name = "Tasks",
-            ["g"] = { "<cmd>GoTestFunc<cr>", "Run go test function" },
-            ["m"] = { "<cmd>AsyncRun make<cr>", "Run default make task" },
-            ["l"] = { "<cmd>AsyncRun npm run lint<cr>", "Run js lint" },
-            ["t"] = { "<cmd>AsyncRun npm run test<cr>", "Run js test" },
+            ["m"] = {
+                "<cmd>AsyncRun cd ~/Projects/registration-service && env_export .env && make postgres && sleep 3 && make migrate<cr>",
+                "Create test db and run migrations",
+            },
+            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest<cr>", "Run go tests" },
+            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "Run go tests" },
+            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc<cr>", "Run go test function" },
+            -- ["t"] = { "<cmd>AsyncRun npm run test<cr>", "Run js test" },
+            ["l"] = { "<cmd>AsyncRun make lint<cr>", "Run golangci-lint" },
         },
         ["s"] = {
             name = "Search",

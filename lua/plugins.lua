@@ -60,6 +60,7 @@ return require("packer").startup(function()
     use("pbrisbin/vim-mkdir")
     use("tpope/vim-surround")
     use("tpope/vim-sensible")
+    use("tpope/vim-dotenv")
 
     -- Which key shortcuts helper
     use({
