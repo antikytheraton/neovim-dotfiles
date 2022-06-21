@@ -214,7 +214,7 @@ M.setup = function()
     ins_right({ "filetype" })
     ins_right({
         "o:encoding", -- option component same as &encoding in viml
-        fmt = string.upper, -- I'm not sure why it's upper case either ;)
+        fmt = string.lower, -- I'm not sure why it's upper case either ;)
         cond = conditions.hide_in_width,
         color = { fg = colors.green, gui = "bold" },
     })
@@ -229,22 +229,22 @@ M.setup = function()
     })
 
     ins_right({
-        "branch",
-        icon = "",
-        color = { fg = colors.violet, gui = "bold" },
-    })
-
-    ins_right({
         "diff",
         -- Is it me or the symbol for modified us really weird
-        -- symbols = { added = " ", modified = "● ", removed = " " },
-        symbols = { added = " ", modified = " ", removed = " " },
+        symbols = { added = " ", modified = "● ", removed = " " },
+        -- symbols = { added = " ", modified = " ", removed = " " },
         diff_color = {
             added = { fg = colors.green },
             modified = { fg = colors.orange },
             removed = { fg = colors.red },
         },
         cond = conditions.hide_in_width,
+    })
+
+    ins_right({
+        "branch",
+        icon = "",
+        color = { fg = colors.violet, gui = "bold" },
     })
 
     ins_right({

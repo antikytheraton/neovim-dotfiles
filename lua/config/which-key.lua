@@ -348,15 +348,12 @@ M.config = {
                 "Workspace Symbols",
             },
         },
-        ["m"] = {
-            name = "Tasks",
+        ["a"] = {
+            name = "Async Tasks",
             ["m"] = {
                 "<cmd>AsyncRun cd ~/Projects/registration-service && env_export .env && make postgres && sleep 3 && make migrate<cr>",
                 "Create test db and run migrations",
             },
-            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest<cr>", "Run go tests" },
-            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "Run go tests" },
-            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc<cr>", "Run go test function" },
             -- ["t"] = { "<cmd>AsyncRun npm run test<cr>", "Run js test" },
             ["l"] = { "<cmd>AsyncRun make lint<cr>", "Run golangci-lint" },
         },
@@ -408,10 +405,14 @@ M.config = {
         },
         ["t"] = {
             name = "Test",
-            ["r"] = { "<cmd>Ultest<CR>", "Run tests" },
-            ["l"] = { "<cmd>UltestLast<CR>", "Run last test" },
-            ["n"] = { "<cmd>UltestNearest<CR>", "Run nearest test" },
-            ["s"] = { "<cmd>UltestSummary<CR>", "Toggle summary" },
+            -- ["r"] = { "<cmd>Ultest<CR>", "Run tests" },
+            -- ["l"] = { "<cmd>UltestLast<CR>", "Run last test" },
+            -- ["n"] = { "<cmd>UltestNearest<CR>", "Run nearest test" },
+            -- ["s"] = { "<cmd>UltestSummary<CR>", "Toggle summary" },
+            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest<cr>", "Run go tests" },
+            ["r"] = { "<cmd>Dotenv .env<cr><cmd>!gotestsum --format pkgname<cr>", "Run go tests" },
+            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "Run go tests" },
+            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc<cr>", "Run go test function" },
         },
         ["T"] = {
             name = "Treesitter",
