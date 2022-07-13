@@ -196,6 +196,7 @@ local servers = {
             "typescriptreact",
             "yaml",
             "rust",
+            "clangd",
         },
     },
     sumneko_lua = {

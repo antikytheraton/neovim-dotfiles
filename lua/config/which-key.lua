@@ -128,25 +128,11 @@ M.config = {
         },
     },
     mappings = {
-        ["'"] = {
-            "<cmd>1ToggleTerm size=15 direction=horizontal<cr>",
-            "Open toggle terminal",
-        },
-        ['"'] = {
-            "<cmd>execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>",
-            "Open terminal",
-        },
-        -- ["e"] = { "<cmd>SnipRun<cr>", "Execute (sniprun)" },
         ["w"] = { "<cmd>w!<cr>", "Save" },
         ["W"] = { "<cmd>:lua require'utils'.sudo_write()<cr>", "Sudo Save" },
         ["q"] = { "<cmd>q!<cr>", "Quit" },
         [";"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment Operator" },
         ["e"] = { "<cmd>NnnPicker %:p:h<cr>", "nnn" },
-        -- ["e"] = {
-        --     "<cmd>FloatermNew --name=nnn nnn %:p:h<cr>",
-        --     "nnn",
-        -- },
-        -- ["e"] = { "<cmd>NvimTreeRefresh<cr><cmd>NvimTreeToggle<cr>", "nvim-tree" },
         ["|"] = { "<cmd>vsp<cr>", "Window vertical split" },
         ["-"] = { "<cmd>sp<cr>", "Window horizontal split" },
         ["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard manager" },
@@ -351,11 +337,9 @@ M.config = {
         ["a"] = {
             name = "Async Tasks",
             ["m"] = {
-                "<cmd>AsyncRun cd ~/Projects/registration-service && env_export .env && make postgres && sleep 3 && make migrate<cr>",
+                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=terminal -cwd=~/Projects/registration-service make postgres && sleep 3 && make migrate<cr>",
                 "Create test db and run migrations",
             },
-            -- ["t"] = { "<cmd>AsyncRun npm run test<cr>", "Run js test" },
-            ["l"] = { "<cmd>AsyncRun make lint<cr>", "Run golangci-lint" },
         },
         ["s"] = {
             name = "Search",
@@ -404,15 +388,25 @@ M.config = {
             ["l"] = { "<Plug>RestNvimLast", "Run last request" },
         },
         ["t"] = {
-            name = "Test",
+            -- name = "Test",
             -- ["r"] = { "<cmd>Ultest<CR>", "Run tests" },
             -- ["l"] = { "<cmd>UltestLast<CR>", "Run last test" },
             -- ["n"] = { "<cmd>UltestNearest<CR>", "Run nearest test" },
             -- ["s"] = { "<cmd>UltestSummary<CR>", "Toggle summary" },
-            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest<cr>", "Run go tests" },
-            ["r"] = { "<cmd>Dotenv .env<cr><cmd>!gotestsum --format pkgname<cr>", "Run go tests" },
-            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "Run go tests" },
-            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc<cr>", "Run go test function" },
+            -- ["g"] = {
+            name = "Go test suite",
+            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest -timeout=5m<cr>", "Run Gotest" },
+            ["s"] = {
+                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=term gotestsum --format pkgname -- -v -race ./...<cr>",
+                "Run Gotest Sum",
+            },
+            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "GoCoverage Toggle" },
+            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc -timeout=5m<cr>", "Run go test function" },
+            ["l"] = {
+                "<cmd>!golangci-lint run -E gofmt -E golint -E goimports -E staticcheck -E revive --timeout 5m <cr>",
+                "Run golangci Lint",
+                -- },
+            },
         },
         ["T"] = {
             name = "Treesitter",

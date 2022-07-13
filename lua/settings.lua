@@ -177,7 +177,8 @@ vim.cmd(
 
 -- Format on save
 vim.api.nvim_exec(
-    [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.json,*.prisma :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
+    [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.json,*.prisma :silent! lua vim.lsp.buf.formatting_seq_sync() ]]
+    ,
     false
 )
 
@@ -224,6 +225,6 @@ local disabled_built_ins = {
     "zipPlugin",
 }
 
---for _, plugin in pairs(disabled_built_ins) do
---	vim.g["loaded_" .. plugin] = 1
---end
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end

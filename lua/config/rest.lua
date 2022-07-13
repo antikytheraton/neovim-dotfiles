@@ -9,6 +9,13 @@ M.config = {
     highlight = { enabled = true, timeout = 1000 },
     -- Jump to request line on run
     jump_to_request = false,
+    result = {
+        -- toggle showing URL, HTTP info, headers at top the of result window
+        show_url = true,
+        show_http_info = true,
+        show_headers = true,
+    },
+    yank_dry_run = true,
 }
 
 M.setup = function()
