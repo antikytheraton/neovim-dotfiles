@@ -11,7 +11,7 @@ M.config = {
         -- diagnostics
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.diagnostics.golangci_lint,
-        null_ls.builtins.diagnostics.misspell,
+        -- null_ls.builtins.diagnostics.misspell,
         null_ls.builtins.diagnostics.revive,
         null_ls.builtins.diagnostics.staticcheck,
         null_ls.builtins.diagnostics.codespell,
@@ -22,7 +22,7 @@ M.config = {
         -- code_actions
         null_ls.builtins.code_actions.eslint,
         null_ls.builtins.code_actions.gitsigns,
-        null_ls.builtins.code_actions.refactoring,
+        -- null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.code_actions.gitrebase,
         -- formatting

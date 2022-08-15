@@ -314,12 +314,12 @@ return require("packer").startup(function()
         "ggandor/lightspeed.nvim",
     })
 
-    use({
-        "ziontee113/syntax-tree-surfer",
-        config = function()
-            require("config.sts").setup()
-        end,
-    })
+    --use({
+        --"ziontee113/syntax-tree-surfer",
+        --config = function()
+            --require("config.sts").setup()
+        --end,
+    --})
 
     -- HTTP client in Neovim
     use({
