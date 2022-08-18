@@ -14,7 +14,7 @@ M.config = {
         -- null_ls.builtins.diagnostics.misspell,
         null_ls.builtins.diagnostics.revive,
         null_ls.builtins.diagnostics.staticcheck,
-        null_ls.builtins.diagnostics.codespell,
+        -- null_ls.builtins.diagnostics.codespell,
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.diagnostics.jsonlint,
         null_ls.builtins.diagnostics.shellcheck,
