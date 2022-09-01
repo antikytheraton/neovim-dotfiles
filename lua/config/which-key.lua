@@ -403,7 +403,7 @@ M.config = {
             ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "GoCoverage Toggle" },
             ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc -timeout=5m<cr>", "Run go test function" },
             ["l"] = {
-                "<cmd>!golangci-lint run -E gofmt -E golint -E goimports -E staticcheck -E revive --timeout 5m <cr>",
+                "<cmd>AsyncRun -mode=term golangci-lint run -E gofmt -E golint -E goimports -E staticcheck -E revive --timeout 5m <cr>",
                 "Run golangci Lint",
                 -- },
             },
