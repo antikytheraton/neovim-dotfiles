@@ -423,6 +423,7 @@ M.config = {
                 "Toggle hidden characters",
             },
             ["d"] = { "<cmd>%s/\\s\\+$//e<cr>", "Delete trailing spaces" },
+            ["j"] = { "<cmd>%!jq '.'<cr>", "Format JSON using JQ" },
             ["h"] = { ":nohlsearch<cr>", "Remove highlighting of search results" },
             ["s"] = { ":ISwap<cr>", "Swap parameters interactively" },
         },
