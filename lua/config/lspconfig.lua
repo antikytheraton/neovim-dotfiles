@@ -120,6 +120,7 @@ end
 
 local prettierd = require("config/efm/prettierd")
 local eslint = require("config/efm/eslint")
+local jq = require("config/efm/jq")
 local shellcheck = require("config/efm/shellcheck")
 local shfmt = require("config/efm/shfmt")
 local rustfmt = require("config/efm/rustfmt")
@@ -147,7 +148,7 @@ local servers = {
             root_dir = vim.loop.cwd,
         },
     },
-    -- jsonls = true,
+    jsonls = true,
     efm = {
         root_dir = vim.loop.cwd,
         init_options = { documentFormatting = true, codeAction = true },
@@ -169,7 +170,7 @@ local servers = {
                 typescriptreact = { prettierd, eslint },
                 javascriptreact = { prettierd, eslint },
                 yaml = { prettierd, eslint },
-                -- json = { prettierd, eslint },
+                -- json = { jq },
                 html = { prettierd, eslint },
                 scss = { prettierd, eslint },
                 css = { prettierd, eslint },

@@ -62,13 +62,13 @@ vim.opt.whichwrap:append("<>hl")
 
 -- Highlight on yank
 vim.api.nvim_exec(
-	[[
+    [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]],
-	false
+]]   ,
+    false
 )
 
 vim.cmd([[ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb() ]])
@@ -168,7 +168,7 @@ vim.g.asyncrun_open = 6
 
 -- Open file at same location where it was opened last time
 vim.cmd(
-	[[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+    [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 )
 
 -- Format files with lsp before quit
@@ -177,53 +177,55 @@ vim.cmd(
 
 -- Format on save
 vim.api.nvim_exec(
-	[[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.json,*.prisma :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
-	false
+    [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.prisma :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
+    false
 )
+
+-- vim.cmd [[autocmd BufWritePre *.json :%!jq '.' ]]
 
 -- Set directories for backup/swap/undo files and create them if necessary
 local Path = require("plenary.path")
 
 local swapdir = Path:new(Path.path.home .. "/.cache/nvim/swap/")
 if not swapdir:exists() then
-	swapdir:mkdir()
+    swapdir:mkdir()
 end
 vim.o.directory = tostring(swapdir)
 
 local backupdir = Path:new(Path.path.home .. "/.cache/nvim/backup/")
 if not backupdir:exists() then
-	backupdir:mkdir()
+    backupdir:mkdir()
 end
 vim.o.backupdir = tostring(backupdir)
 
 local undodir = Path:new(Path.path.home .. "/.cache/nvim/undo/")
 if not undodir:exists() then
-	undodir:mkdir()
+    undodir:mkdir()
 end
 vim.o.undodir = tostring(undodir)
 
 -- disable some builtin vim plugins
 local disabled_built_ins = {
-	"2html_plugin",
-	"getscript",
-	"getscriptPlugin",
-	"gzip",
-	"logipat",
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	"matchit",
-	"tar",
-	"tarPlugin",
-	"rrhelper",
-	"spellfile_plugin",
-	"vimball",
-	"vimballPlugin",
-	"zip",
-	"zipPlugin",
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-	vim.g["loaded_" .. plugin] = 1
+    vim.g["loaded_" .. plugin] = 1
 end

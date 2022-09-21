@@ -172,12 +172,12 @@ return require("packer").startup(function()
     })
 
     -- Enhanced wildmenu
-    use({
-        "gelguy/wilder.nvim",
-        config = function()
-            require("config.wilder").setup()
-        end,
-    })
+    -- use({
+    --     "gelguy/wilder.nvim",
+    --     config = function()
+    --         require("config.wilder").setup()
+    --     end,
+    -- })
 
     -- Go development
     use({
