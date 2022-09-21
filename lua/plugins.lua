@@ -32,13 +32,23 @@ return require("packer").startup(function()
             require("trouble").setup({ auto_preview = false, auto_fold = true, auto_close = true })
         end,
     })
-    use("folke/lsp-colors.nvim")
+
+    -- Color highlighter
+    -- use("folke/lsp-colors.nvim")
     use({
-        "jose-elias-alvarez/null-ls.nvim",
+        "NvChad/nvim-colorizer.lua",
         config = function()
-            require("config.null_ls").setup()
+            require("config.colorizer").setup()
         end,
     })
+
+    -- Diagnostics
+    -- use({
+    --     "jose-elias-alvarez/null-ls.nvim",
+    --     config = function()
+    --         require("config.null_ls").setup()
+    --     end,
+    -- })
 
     -- Better code action menu
     use({
@@ -158,6 +168,14 @@ return require("packer").startup(function()
         },
         config = function()
             require("config.cmp").setup()
+        end,
+    })
+
+    -- Enhanced wildmenu
+    use({
+        "gelguy/wilder.nvim",
+        config = function()
+            require("config.wilder").setup()
         end,
     })
 
@@ -342,13 +360,11 @@ return require("packer").startup(function()
         after = { "nvim-cmp" },
     })
 
-    -- Color highlighter
+    -- Using mini.nvim for surround text object plugin and trailing space detection
     use({
-        "norcalli/nvim-colorizer.lua",
-        cmd = { "ColorizerToggle" },
+        "echasnovski/mini.nvim",
         config = function()
-            require("colorizer").setup()
+            require("config.mini").setup()
         end,
-        ft = { "html", "css", "json", "yaml", "conf" },
     })
 end)
