@@ -37,7 +37,7 @@ M.config = {
             height = 0.95,
             preview_cutoff = 120,
         },
-        file_ignore_patterns = { "node_modules", "/.git/" },
+        file_ignore_patterns = { "node_modules", "^.git/" },
         winblend = 0,
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
