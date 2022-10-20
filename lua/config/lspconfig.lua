@@ -111,7 +111,7 @@ custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-custom_capabilities = cmp_lsp.update_capabilities(custom_capabilities)
+custom_capabilities = cmp_lsp.default_capabilities(custom_capabilities)
 
 local custom_init = function(client)
     client.config.flags = client.config.flags or {}

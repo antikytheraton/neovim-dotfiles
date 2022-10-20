@@ -43,12 +43,12 @@ return require("packer").startup(function()
     })
 
     -- Diagnostics
-    -- use({
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     config = function()
-    --         require("config.null_ls").setup()
-    --     end,
-    -- })
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require("config.null_ls").setup()
+        end,
+    })
 
     -- Better code action menu
     use({
