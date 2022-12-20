@@ -65,11 +65,25 @@ M.setup = function()
             { name = "calc" },
             { name = "fish" },
             { name = "emoji" },
-        }, {
-
-            --{ name = "buffer", keyword_length = 3 },
-            { name = "buffer" },
-        }),
+            {
+                name = "buffer",
+                option = {
+                    keyword_pattern = [[\k\+]], -- for recognizing isKeyword
+                    -- list options from all buffers
+                    get_bufnrs = function()
+                        return vim.api.nvim_list_bufs()
+                    end,
+                    -- list options only from visible buffers
+                    -- get_bufnrs = function()
+                    --     local bufs = {}
+                    --     for _, win in ipairs(vim.api.nvim_list_wins()) do
+                    --         bufs[vim.api.nvim_win_get_buf(win)] = true
+                    --     end
+                    --     return vim.tbl_keys(bufs)
+                    -- end,
+                },
+            },
+        }, {}),
 
         snippet = {
             expand = function(args)
