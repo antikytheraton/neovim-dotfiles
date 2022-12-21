@@ -5,9 +5,6 @@ return require("packer").startup(function()
     -- Improve startup time
     use("lewis6991/impatient.nvim")
 
-    -- Improved Typescript lsp config
-    use("jose-elias-alvarez/nvim-lsp-ts-utils")
-
     -- LSP installer
     use({
         "williamboman/nvim-lsp-installer",
@@ -15,6 +12,9 @@ return require("packer").startup(function()
             require("nvim-lsp-installer").setup()
         end,
     })
+
+    -- Improved Typescript lsp config
+    use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
     -- LSP
     use({

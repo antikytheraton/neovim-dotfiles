@@ -9,7 +9,7 @@ local M = {}
 M.config = {
     sources = {
         -- diagnostics
-        -- null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
         -- null_ls.builtins.diagnostics.golangci_lint,
         -- null_ls.builtins.diagnostics.misspell,
         -- null_ls.builtins.diagnostics.revive,
@@ -20,16 +20,16 @@ M.config = {
         null_ls.builtins.diagnostics.shellcheck,
         -- null_ls.builtins.diagnostics.luacheck,
         -- code_actions
-        -- null_ls.builtins.code_actions.eslint,
+        null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
         -- null_ls.builtins.code_actions.gitsigns, BUG: this is giving an error when starts
         -- null_ls.builtins.code_actions.refactoring,
         -- null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.code_actions.gitrebase,
         -- formatting
-        -- null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.gofmt,
-        null_ls.builtins.formatting.golines,
+        null_ls.builtins.formatting.prettier, -- prettier, eslint, eslint_d, or prettierd
+        -- null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.formatting.gofmt,
+        -- null_ls.builtins.formatting.golines,
         null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.formatting.goimports,
         -- null_ls.builtins.formatting.jq,

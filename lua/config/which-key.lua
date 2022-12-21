@@ -95,8 +95,10 @@ M.config = {
     },
     secvmappings = {},
     vmappings = {
-        [";"] = { '<ESC><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
-            "Comment Operator", },
+        [";"] = {
+            '<ESC><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
+            "Comment Operator",
+        },
         --["e"] = { "<ESC><cmd>'<,'>SnipRun<cr>", "Execute (sniprun)" },
         ["g"] = {
             name = "Git",
@@ -395,12 +397,16 @@ M.config = {
             -- ["t"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").summary.toggle()<CR>', "Toggle summary" },
             -- ["a"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.attach()<CR>', "Test attach" },
             ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest -timeout=5m<cr>", "Run Gotest" },
-            ["s"] = { "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=term gotestsum --format pkgname -- -v -race ./...<cr>",
-                "Run Gotest Sum", },
+            ["s"] = {
+                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=term gotestsum --format pkgname -- -v -race ./...<cr>",
+                "Run Gotest Sum",
+            },
             ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "GoCoverage Toggle" },
             ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc -timeout=5m<cr>", "Run go test function" },
-            ["l"] = { "<cmd>AsyncRun -mode=term golangci-lint run -E gofmt -E golint -E goimports -E staticcheck -E revive --timeout 5m <cr>",
-                "Run golangci Lint", },
+            ["l"] = {
+                "<cmd>AsyncRun -mode=term golangci-lint run -E gofmt -E goimports -E staticcheck -E revive --timeout 5m <cr>",
+                "Run golangci Lint",
+            },
             ["g"] = { "<cmd>AsyncRun gofumpt -l -w .<cr>", "Format using gofumpt" },
         },
         ["T"] = {
