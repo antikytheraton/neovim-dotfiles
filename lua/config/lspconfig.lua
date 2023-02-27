@@ -51,7 +51,6 @@ local function custom_on_attach(client, bufnr)
             debug = false,
             disable_commands = false,
             enable_import_on_completion = true,
-
             -- import all
             import_all_timeout = 5000, -- ms
             -- lower numbers = higher priority
@@ -65,11 +64,9 @@ local function custom_on_attach(client, bufnr)
             import_all_select_source = false,
             -- if false will avoid organizing imports
             always_organize_imports = true,
-
             -- filter diagnostics
             filter_out_diagnostics_by_severity = {},
             filter_out_diagnostics_by_code = {},
-
             -- inlay hints
             auto_inlay_hints = false,
             inlay_hints_highlight = "Comment",
@@ -80,7 +77,6 @@ local function custom_on_attach(client, bufnr)
                 Parameter = {},
                 Enum = {},
             },
-
             -- update imports on file move
             update_imports_on_move = false,
             require_confirmation_on_move = false,
@@ -125,21 +121,10 @@ local shellcheck = require("config/efm/shellcheck")
 local shfmt = require("config/efm/shfmt")
 local rustfmt = require("config/efm/rustfmt")
 
-local function get_lua_runtime()
-    local result = {}
-    for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-        local lua_path = path .. "/lua/"
-        if vim.fn.isdirectory(lua_path) then
-            result[lua_path] = true
-        end
-    end
-    return result
-end
-
 local servers = {
     bashls = true,
     cssls = true,
-    clangd = true,
+    -- clangd = true,
     dockerls = true,
     vimls = true,
     yamlls = true,
@@ -203,10 +188,10 @@ local servers = {
             "typescriptreact",
             "yaml",
             "rust",
-            "clangd",
+            -- "clangd",
         },
     },
-    sumneko_lua = {
+    lua_ls = {
         cmd = { "lua-language-server" },
         settings = {
             Lua = {
@@ -228,9 +213,7 @@ local servers = {
                         "use",
                     },
                     workspace = {
-                        library = get_lua_runtime(),
-                        maxPreload = 1000,
-                        preloadFileSize = 1000,
+                        library = vim.api.nvim_get_runtime_file("", true),
                     },
                 },
             },
