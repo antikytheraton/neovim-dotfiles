@@ -13,16 +13,13 @@ return require("packer").startup(function()
         end,
     })
 
-    -- Improved Typescript lsp config
-    use("jose-elias-alvarez/nvim-lsp-ts-utils")
-
     -- LSP
     use({
         "neovim/nvim-lspconfig",
         config = function()
             require("config.lspconfig")
         end,
-        after = { "nvim-cmp", "nvim-lsp-ts-utils", "nvim-lsp-installer" },
+        after = { "nvim-cmp", "nvim-lsp-installer" },
     })
 
     -- Nicer diagnostics

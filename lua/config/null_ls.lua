@@ -16,6 +16,7 @@ M.config = {
         null_ls.builtins.diagnostics.staticcheck,
         null_ls.builtins.diagnostics.codespell,
         null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.ruff,
         -- null_ls.builtins.diagnostics.jsonlint,
         null_ls.builtins.diagnostics.shellcheck,
         -- null_ls.builtins.diagnostics.luacheck,
@@ -27,6 +28,10 @@ M.config = {
         null_ls.builtins.code_actions.gitrebase,
         -- formatting
         null_ls.builtins.formatting.prettier, -- prettier, eslint, eslint_d, or prettierd
+        null_ls.builtins.formatting.black,
+        -- null_ls.builtins.formatting.ruff,
+        -- null_ls.builtins.formatting.yapf,
+        -- null_ls.builtins.formatting.autopep8,
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.gofmt,
         -- null_ls.builtins.formatting.golines,
@@ -34,6 +39,7 @@ M.config = {
         null_ls.builtins.formatting.goimports,
         -- null_ls.builtins.formatting.jq,
     },
+    debug = true,
 }
 
 M.setup = function()

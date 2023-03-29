@@ -67,7 +67,7 @@ vim.api.nvim_exec(
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]]   ,
+]],
     false
 )
 
@@ -136,6 +136,8 @@ vim.o.relativenumber = false
 -- Disable python2 provider
 vim.g.loaded_python_provider = 0
 
+vim.g.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
+
 --  Maximum height of the popup menu
 vim.o.pumheight = 15
 
@@ -177,7 +179,7 @@ vim.cmd(
 
 -- Format on save
 vim.api.nvim_exec(
-    [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.prisma :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
+    [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.prisma,*.py :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
     false
 )
 

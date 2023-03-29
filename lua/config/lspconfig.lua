@@ -41,54 +41,6 @@ local function custom_on_attach(client, bufnr)
     if client.server_capabilities.colorProvider then
         require("config.tailwind_colors.lsp-documentcolors").buf_attach(bufnr, { single_column = true })
     end
-
-    if client.name == "tsserver" then
-        client.server_capabilities.document_formatting = false
-
-        -- required to fix code action ranges and filter diagnostics
-        local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup({
-            debug = false,
-            disable_commands = false,
-            enable_import_on_completion = true,
-            -- import all
-            import_all_timeout = 5000, -- ms
-            -- lower numbers = higher priority
-            import_all_priorities = {
-                same_file = 1, -- add to existing import statement
-                local_files = 2, -- git files or files with relative path markers
-                buffer_content = 3, -- loaded buffer content
-                buffers = 4, -- loaded buffer names
-            },
-            import_all_scan_buffers = 100,
-            import_all_select_source = false,
-            -- if false will avoid organizing imports
-            always_organize_imports = true,
-            -- filter diagnostics
-            filter_out_diagnostics_by_severity = {},
-            filter_out_diagnostics_by_code = {},
-            -- inlay hints
-            auto_inlay_hints = false,
-            inlay_hints_highlight = "Comment",
-            inlay_hints_priority = 200, -- priority of the hint extmarks
-            inlay_hints_throttle = 150, -- throttle the inlay hint request
-            inlay_hints_format = { -- format options for individual hint kind
-                Type = {},
-                Parameter = {},
-                Enum = {},
-            },
-            -- update imports on file move
-            update_imports_on_move = false,
-            require_confirmation_on_move = false,
-            watch_dir = nil,
-        })
-        ts_utils.setup_client(client)
-
-        -- no default maps, so you may want to define some here
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gO", ":TSLspOrganize<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gR", ":TSLspRenameFile<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", ":TSLspImportAll<CR>", opts)
-    end
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -116,7 +68,6 @@ end
 
 local prettierd = require("config/efm/prettierd")
 local eslint = require("config/efm/eslint")
-local jq = require("config/efm/jq")
 local shellcheck = require("config/efm/shellcheck")
 local shfmt = require("config/efm/shfmt")
 local rustfmt = require("config/efm/rustfmt")
@@ -143,13 +94,6 @@ local servers = {
             log_file = "~/efm.log",
             languages = {
                 -- lua = { { formatCommand = "stylua -s --stdin-filepath ${INPUT} -", formatStdin = true } },
-                python = {
-                    { formatCommand = "black --fast -", formatStdin = true },
-                    {
-                        formatCommand = "isort --stdout --profile black -",
-                        formatStdin = true,
-                    },
-                },
                 typescript = { prettierd, eslint },
                 javascript = { prettierd, eslint },
                 typescriptreact = { prettierd, eslint },
@@ -179,7 +123,6 @@ local servers = {
             -- "json",
             "lua",
             "markdown",
-            "python",
             "scss",
             "sh",
             "sql",
@@ -249,9 +192,30 @@ local servers = {
             },
         },
     },
-    tsserver = {
-        init_options = require("nvim-lsp-ts-utils").init_options,
+    pylsp = {
+        settings = {
+            pylsp = {
+                plugins = {
+                    pycodestyle = {
+                        ignore = { 'W391' },
+                        maxLineLength = 100,
+                    }
+                }
+            }
+        }
     },
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    useLibraryCodeForTypes = true
+                }
+            }
+        }
+    },
+    ruff_lsp = {},
 }
 
 local setup_server = function(server, config)
