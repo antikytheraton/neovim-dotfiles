@@ -7,9 +7,10 @@ return require("packer").startup(function()
 
     -- LSP installer
     use({
-        "williamboman/nvim-lsp-installer",
+        "williamboman/mason.nvim",
+        run = ":MasonUpdate", -- :MasonUpdate updates registry contents
         config = function()
-            require("nvim-lsp-installer").setup()
+            require("config.mason").config()
         end,
     })
 
@@ -19,7 +20,7 @@ return require("packer").startup(function()
         config = function()
             require("config.lspconfig")
         end,
-        after = { "nvim-cmp", "nvim-lsp-installer" },
+        after = { "nvim-cmp", "mason.nvim" },
     })
 
     -- Nicer diagnostics

@@ -29,7 +29,7 @@ M.config = {
         -- formatting
         null_ls.builtins.formatting.prettier, -- prettier, eslint, eslint_d, or prettierd
         null_ls.builtins.formatting.black,
-        -- null_ls.builtins.formatting.ruff,
+        null_ls.builtins.formatting.ruff,
         -- null_ls.builtins.formatting.yapf,
         -- null_ls.builtins.formatting.autopep8,
         -- null_ls.builtins.formatting.stylua,
