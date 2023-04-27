@@ -402,4 +402,18 @@ return require("packer").startup(function()
             require("config.mini").setup()
         end,
     })
+
+    use({
+        "nvim-neotest/neotest",
+        config = function()
+            require("config.neotest").setup()
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-python",
+        }
+    })
 end)

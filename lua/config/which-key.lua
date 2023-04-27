@@ -336,7 +336,7 @@ M.config = {
         ["a"] = {
             name = "Async Tasks",
             ["m"] = {
-                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=terminal -cwd=~/Projects/registration-service make postgres && sleep 3 && make migrate<cr>",
+                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=terminal -cwd=~/Projects/learnexus/registration-service make postgres && sleep 3 && make migrate<cr>",
                 "Create test db and run migrations",
             },
         },
@@ -388,25 +388,25 @@ M.config = {
         },
         ["t"] = {
             name = "Test",
-            -- ["r"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run(vim.fn.getcwd())<CR>', "Run tests" },
-            -- ["n"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run()<CR>', "Run nearest test" },
-            -- ["d"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run({strategy = "dap"})<CR>',
-            --     "Debug nearest test" },
-            -- ["s"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.stop()<CR>', "Stop test" },
-            -- ["t"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").summary.toggle()<CR>', "Toggle summary" },
-            -- ["a"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.attach()<CR>', "Test attach" },
-            ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest -timeout=5m<cr>", "Run Gotest" },
-            ["s"] = {
-                "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=term gotestsum --format pkgname -- -v -race ./...<cr>",
-                "Run Gotest Sum",
-            },
-            ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "GoCoverage Toggle" },
-            ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc -timeout=5m<cr>", "Run go test function" },
-            ["l"] = {
-                "<cmd>AsyncRun -mode=term golangci-lint run -E gofmt -E goimports -E staticcheck -E revive --timeout 5m <cr>",
-                "Run golangci Lint",
-            },
-            ["g"] = { "<cmd>AsyncRun gofumpt -l -w .<cr>", "Format using gofumpt" },
+            ["r"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run(vim.fn.getcwd())<CR>', "Run tests" },
+            ["n"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run()<CR>', "Run nearest test" },
+            ["d"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.run({strategy = "dap"})<CR>',
+                "Debug nearest test" },
+            ["s"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.stop()<CR>', "Stop test" },
+            ["t"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").summary.toggle()<CR>', "Toggle summary" },
+            ["a"] = { '<cmd>Dotenv .env<cr><cmd>lua require("neotest").run.attach()<CR>', "Test attach" },
+            -- ["t"] = { "<cmd>Dotenv .env<cr><cmd>GoTest -timeout=5m<cr>", "Run Gotest" },
+            -- ["s"] = {
+            --     "<cmd>Dotenv .env<cr><cmd>AsyncRun -mode=term gotestsum --format pkgname -- -v -race ./...<cr>",
+            --     "Run Gotest Sum",
+            -- },
+            -- ["c"] = { "<cmd>Dotenv .env<cr><cmd>GoCoverageToggle<cr>", "GoCoverage Toggle" },
+            -- ["f"] = { "<cmd>Dotenv .env<cr><cmd>GoTestFunc -timeout=5m<cr>", "Run go test function" },
+            -- ["l"] = {
+            --     "<cmd>AsyncRun -mode=term golangci-lint run -E gofmt -E goimports -E staticcheck -E revive --timeout 5m <cr>",
+            --     "Run golangci Lint",
+            -- },
+            -- ["g"] = { "<cmd>AsyncRun gofumpt -l -w .<cr>", "Format using gofumpt" },
         },
         ["T"] = {
             name = "Treesitter",
