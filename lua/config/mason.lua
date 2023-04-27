@@ -14,6 +14,7 @@ function M.config()
         "css-lsp",
         "delve",
         "dockerfile-language-server",
+        "docker-compose-language-service",
         "eslint-lsp",
         "eslint_d",
         "firefox-debug-adapter",
@@ -44,6 +45,7 @@ function M.config()
         "texlab",
         "typescript-language-server",
         "yaml-language-server",
+        "ruby-lsp",
     }
 
     local function check()

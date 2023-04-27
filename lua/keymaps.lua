@@ -102,10 +102,10 @@ map("n", "k", "gk", opts)
 -- Insert mode
 
 -- 'jk' for quitting insert mode
-map("i", "jk", "<ESC>", opts)
+-- map("i", "jk", "<ESC>", opts)
 
 -- 'kj' for quitting insert mode
-map("i", "kj", "<ESC>", opts)
+-- map("i", "kj", "<ESC>", opts)
 
 -- 'jj' for quitting insert mode
 map("i", "jj", "<ESC>", opts)

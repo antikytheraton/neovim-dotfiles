@@ -138,6 +138,9 @@ vim.g.loaded_python_provider = 0
 
 vim.g.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
 
+vim.g.black_use_virtualenv = 1
+vim.g.black_virtualenvblack_virtualenv = '~/.pyenv/versions/py3nvim'
+
 --  Maximum height of the popup menu
 vim.o.pumheight = 15
 
@@ -182,6 +185,8 @@ vim.api.nvim_exec(
     [[ autocmd BufWritePre *.go,*.js,*.ts,*.tsx,*.lua,*.yml,*.prisma,*.py :silent! lua vim.lsp.buf.formatting_seq_sync() ]],
     false
 )
+
+vim.cmd [[autocmd BufWritePre *.py Black ]]
 
 -- vim.cmd [[autocmd BufWritePre *.json :%!jq '.' ]]
 
