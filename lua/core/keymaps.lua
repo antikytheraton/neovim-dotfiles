@@ -18,6 +18,9 @@ keymap.set("n", "n", "nzzzv")                  -- Stay centered jumping between 
 keymap.set("n", "N", "Nzzzv")
 keymap.set("c", "Q", "q")                      -- Fix some common typos
 keymap.set("c", "W", "w")
+keymap.set('n', '<leader>tl', function()
+  vim.opt.list = not vim.opt.list:get()
+end, { desc = 'Toggle visible whitespace' })
 
 
 -- Split window management
@@ -96,6 +99,7 @@ keymap.set("n", "<leader>gu", ":Gitsigns undo_stage_hunk<cr>")                  
 keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<cr>")                                -- reset hunk
 keymap.set("n", "<leader>gR", ":Gitsigns reset_buffer<cr>")                              -- reset buffer
 keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>")                       -- preview hunk inline
+keymap.set("n", "<leader>gt", ":Gitsigns setloclist<cr>")                       -- preview hunk inline
 keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>")                           -- show latest modified files
 
 -- Harpoon

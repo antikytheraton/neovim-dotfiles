@@ -12,6 +12,7 @@ return {
 
     -- LSP completion capabilities
     -- https://github.com/hrsh7th/cmp-nvim-lsp
+
     'hrsh7th/cmp-nvim-lsp',
 
     -- Additional user-friendly snippets
@@ -85,13 +86,13 @@ return {
         { name = "path" },        -- file system paths
         { name = "cmp_tabnine" }, -- tabnine (requires the Tabnine plugin)
         { name = "treesitter" },  -- treesitter
-        {
-          name = "tmux",
-          option = {
-            all_panes = true,        --source from all panes in the current tmux session
-            capture_history = false, -- show completion suggestions from text in visible pane
-          }
-        },                           -- tmux completion (requires the tmux plugin)
+        -- {
+        --   name = "tmux",
+        --   option = {
+        --     all_panes = true,        --source from all panes in the current tmux session
+        --     capture_history = false, -- show completion suggestions from text in visible pane
+        --   }
+        -- },                           -- tmux completion (requires the tmux plugin)
         { name = "emoji" },          -- emoji completion (requires the emoji plugin) 🐛
       }),
       formatting = {

@@ -37,6 +37,8 @@ return {
         -- 'basedpyright',
         'pyright',
         'ruff',
+        -- 'reorder-python-imports',
+        'terraformls',
       },
       automatic_enable = true,
     })
@@ -58,9 +60,13 @@ return {
     })
 
     -- vim.lsp.enable("basedpyright")
-    -- vim.lsp.enable("pyright")
-    -- vim.lsp.enable("ruff")
+    vim.lsp.config("pyright",{})
+    vim.lsp.enable("pyright")
+    vim.lsp.enable("ruff")
+    -- vim.lsp.enable("terraformls")
+    -- vim.lsp.enable("reorder-python-imports")
     -- vim.lsp.enable("pyink")
+    -- vim.lsp.config('django-template-lsp', {})
     -- vim.lsp.enable("django-template-lsp")
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)

@@ -19,12 +19,6 @@ opt.wrap = true
 opt.whichwrap:append("<>hl")
 vim.o.linebreak = true
 
-
--- Open file at same location where it was opened last time
-vim.cmd(
-  [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
-)
-
 -- Search Settings
 opt.ignorecase = true
 opt.smartcase = true
@@ -65,14 +59,16 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 
--- Highlight on yank
-vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]], false)
+--" Show LF as $ and CR as ^M
+vim.opt.list = false
+vim.opt.listchars = {
+  eol = '$',
+  tab = '>-',
+  trail = '~',
+  extends = '>',
+  precedes = '<',
+  nbsp = '+',
+}
 
 -- Save undo history
 vim.o.undofile = true
