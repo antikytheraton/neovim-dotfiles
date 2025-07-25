@@ -88,19 +88,9 @@ keymap.set('n', '<leader>fm',
 --   end)
 
 -- Git-blame
-keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>')                                        -- open gitlazy
-keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>")                                     -- toggle git blame
-keymap.set("n", "<leader>gl", ":Gitsigns blame_line<CR>")                                -- toggle git blame
-keymap.set("n", "<leader>gL", "<cmd>lua require 'gitsigns'.blame_line({full=true})<cr>") -- toggle git blame
-keymap.set("n", "]c", ":Gitsigns nav_hunk next<cr>")                                     -- jump to next hunk
-keymap.set("n", "[c", ":Gitsigns nav_hunk prev<cr>")                                     -- jump to prev hunk
-keymap.set("n", "<leader>gs", ":Gitsigns stage_hunk<cr>")                                -- stage hunk
-keymap.set("n", "<leader>gu", ":Gitsigns undo_stage_hunk<cr>")                           -- undo stage hunk
-keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<cr>")                                -- reset hunk
-keymap.set("n", "<leader>gR", ":Gitsigns reset_buffer<cr>")                              -- reset buffer
-keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>")                       -- preview hunk inline
-keymap.set("n", "<leader>gt", ":Gitsigns setloclist<cr>")                       -- preview hunk inline
-keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>")                           -- show latest modified files
+keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>')    -- open gitlazy
+keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- toggle git blame
+keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>")     -- show latest modified files
 
 -- Harpoon
 keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
@@ -124,12 +114,12 @@ keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
 keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
 keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+-- keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>')
 keymap.set('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
 keymap.set('v', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
 keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
+-- keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 keymap.set('n', '[q', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 keymap.set('n', ']q', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')

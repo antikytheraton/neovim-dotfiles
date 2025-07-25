@@ -10,14 +10,18 @@ return {
     { 'mason-org/mason.nvim' },
     -- https://github.com/williamboman/mason-lspconfig.nvim
     { 'mason-org/mason-lspconfig.nvim' },
+    -- 'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP
     -- https://github.com/j-hui/fidget.nvim
-    { 'j-hui/fidget.nvim',             opts = {} },
+    { 'j-hui/fidget.nvim', opts = {} },
+
+    -- Allows extra capabilities provided by nvim-cmp
+    'hrsh7th/cmp-nvim-lsp',
 
     -- Additional lua configuration, makes nvim stuff amazing!
     -- https://github.com/folke/neodev.nvim
-    { 'folke/neodev.nvim',             opts = {} },
+    { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
     require('mason').setup()
@@ -38,7 +42,7 @@ return {
         'pyright',
         'ruff',
         -- 'reorder-python-imports',
-        'terraformls',
+        -- 'terraformls',
       },
       automatic_enable = true,
     })
@@ -59,15 +63,17 @@ return {
       },
     })
 
-    -- vim.lsp.enable("basedpyright")
-    vim.lsp.config("pyright",{})
-    vim.lsp.enable("pyright")
-    vim.lsp.enable("ruff")
-    -- vim.lsp.enable("terraformls")
-    -- vim.lsp.enable("reorder-python-imports")
-    -- vim.lsp.enable("pyink")
-    -- vim.lsp.config('django-template-lsp', {})
-    -- vim.lsp.enable("django-template-lsp")
+    vim.lsp.config('dartls', {
+      on_attach = function(client, bufnr)
+        -- Your custom LSP key mappings and on_attach logic for dartls
+        local map = function(keys, func, desc)
+          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        end
+        -- Add specific key mappings for dartls if needed
+        map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        -- Add other dartls specific key mappings here if needed
+      end,
+    })
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
