@@ -73,10 +73,11 @@ keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, {})       
 keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})                   -- fuzzy find open buffers
 keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})                 -- fuzzy find help tags
 keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {}) -- fuzzy find in current file buffer
-keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})      -- fuzzy find clipboard
-keymap.set('n', '<leader>fc', "<cmd>Telescope neoclip unnamed<cr>")
+-- keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
+keymap.set('n', '<leader>fo', "<cmd>Telescope oldfiles<CR>")                              -- previously opened files
+keymap.set('n', '<leader>fc', "<cmd>Telescope neoclip<cr>")                               -- fuzzy find clipboard
 -- fuzzy find LSP/class symbolskey
-keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {}) -- fuzzy find LSP/incoming calls
+keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})        -- fuzzy find LSP/incoming calls
 -- keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({default_text=":method:"}) end) -- fuzzy find methods in current class
 keymap.set('n', '<leader>fm',
   function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end) -- fuzzy find methods in current class
@@ -88,9 +89,9 @@ keymap.set('n', '<leader>fm',
 --   end)
 
 -- Git-blame
-keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>')    -- open gitlazy
-keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- toggle git blame
-keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>")     -- show latest modified files
+keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>')              -- open gitlazy
+keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>")           -- toggle git blame
+keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>") -- show latest modified files
 
 -- Harpoon
 keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
@@ -109,11 +110,16 @@ keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end)
 keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>") -- Run REST query
 
 -- LSP
-keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+-- keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+keymap.set('n', 'gd', '<cmd>:Trouble lsp_definitions<CR>')
+-- keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+keymap.set('n', 'gD', '<cmd>:Trouble lsp_declarations<CR>')
+-- keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+keymap.set('n', 'gi', '<cmd>:Trouble lsp_implementations<CR>')
+-- keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+keymap.set('n', 'gt', '<cmd>:Trouble lsp_type_definitions<CR>')
+-- keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+keymap.set('n', 'gr', '<cmd>:Trouble lsp_references<CR>')
 -- keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>')
 keymap.set('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
@@ -122,7 +128,7 @@ keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 -- keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 keymap.set('n', '[q', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 keymap.set('n', ']q', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+keymap.set('n', '<leader>ts', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')
 
 -- Debugging
