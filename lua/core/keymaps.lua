@@ -4,19 +4,21 @@ vim.g.mapleader = ","
 local keymap = vim.keymap
 
 -- General keymaps
-keymap.set("n", "<leader>wq", ":wq<CR>")       -- save and quit
-keymap.set("n", "<leader>qq", ":q!<CR>")       -- quit without saving
-keymap.set("n", "<leader>ww", ":w<CR>")        -- save
-keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
-keymap.set("x", "<Tab>", ">gv|")               -- Use tab for indenting in visual mode
+keymap.set("n", "<leader>wq", ":wq<CR>")        -- save and quit
+keymap.set("n", "<leader>/", ":Commentary<CR>") -- comment code
+keymap.set("v", "<leader>/", ":Commentary<CR>") -- comment code
+keymap.set("n", "<leader>qq", ":q!<CR>")        -- quit without saving
+keymap.set("n", "<leader>ww", ":w<CR>")         -- save
+keymap.set("n", "gx", ":!open <c-r><c-a><CR>")  -- open URL under cursor
+keymap.set("x", "<Tab>", ">gv|")                -- Use tab for indenting in visual mode
 keymap.set("x", "<S-Tab>", "<gv")
-keymap.set("n", "<Esc>", ":noh<CR>")           -- Clear any highlights when <esc> is pressed
-keymap.set("n", "j", "gj")                     -- Move one up/down display line instead of physicial line
+keymap.set("n", "<Esc>", ":noh<CR>")            -- Clear any highlights when <esc> is pressed
+keymap.set("n", "j", "gj")                      -- Move one up/down display line instead of physicial line
 keymap.set("n", "k", "gk")
-keymap.set("v", "p", "pgvy")                   -- Have the same buffer on clipboard for multiple pastes
-keymap.set("n", "n", "nzzzv")                  -- Stay centered jumping between search results
+keymap.set("v", "p", "pgvy")                    -- Have the same buffer on clipboard for multiple pastes
+keymap.set("n", "n", "nzzzv")                   -- Stay centered jumping between search results
 keymap.set("n", "N", "Nzzzv")
-keymap.set("c", "Q", "q")                      -- Fix some common typos
+keymap.set("c", "Q", "q")                       -- Fix some common typos
 keymap.set("c", "W", "w")
 keymap.set('n', '<leader>tl', function()
   vim.opt.list = not vim.opt.list:get()
