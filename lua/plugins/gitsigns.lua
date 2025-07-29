@@ -1,6 +1,23 @@
 return {
   "lewis6991/gitsigns.nvim",
   opts = {
+    current_line_blame = true,
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+      delay = 250,
+      ignore_whitespace = true,
+      virt_text_priority = 100, -- Ensure it renders above other virtual text
+    },
+    current_line_blame_formatter = function(name, blame_info, opts)
+      local author = blame_info.author
+      if blame_info.author == name then
+        author = 'You'
+      end
+      local text = string.format('  󰊤 %s • %s • %s', author, blame_info.summary,
+        os.date('%Y-%m-%d', blame_info['author_time']))
+      return { { text, 'GitSignsCurrentLineBlame' } }
+    end,
     on_attach = function(bufnr)
       local gitsigns = require 'gitsigns'
 
@@ -49,8 +66,8 @@ return {
       end, { desc = 'git Dif[f] against last commit' })
       -- Toggles
       map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
-      -- keymap.set("n", "<leader>gl", ":Gitsigns blame_line<CR>")                                -- toggle git blame
-      -- keymap.set("n", "<leader>gL", "<cmd>lua require 'gitsigns'.blame_line({full=true})<cr>") -- toggle git blame
+      map("n", "<leader>gl", gitsigns.blame_line, { desc = 'git b[l]ame line' }) -- toggle git blame
+      -- map("n", "<leader>gL", gitsigns.blame_line { full = true }, { desc = 'git b[L]ame line (full)' }) -- toggle git blame (full)
     end,
   },
 }
