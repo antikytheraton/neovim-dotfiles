@@ -8,7 +8,7 @@ vim.cmd([[ command Unix2Dos !unix2dos %<cr> ]])
 -- Format JSON using jq
 vim.cmd([[ command JQ %!jq . <cr> ]])
 -- Apply reorder-python-imports formatter
-vim.cmd([[ command ReorderPythonImports !reorder-python-imports % <cr>]])
+vim.cmd([[ command ReorderPythonImports silent! !reorder-python-imports % <cr>]])
 -- Session
 vim.cmd([[ command SessionLoad lua require('persistence').load()<cr> ]])
 -- Neotest
