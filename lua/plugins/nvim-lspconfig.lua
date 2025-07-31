@@ -1,51 +1,42 @@
--- LSP Support
 return {
-  -- LSP Configuration
-  -- https://github.com/neovim/nvim-lspconfig
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
+  event = { "BufReadPre", "BufNewFile", },
   dependencies = {
-    -- LSP Management
-    -- https://github.com/williamboman/mason.nvim
     { 'mason-org/mason.nvim' },
-    -- https://github.com/williamboman/mason-lspconfig.nvim
     { 'mason-org/mason-lspconfig.nvim' },
-    -- 'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-    -- Useful status updates for LSP
-    -- https://github.com/j-hui/fidget.nvim
-    { 'j-hui/fidget.nvim', opts = {} },
-
-    -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
-
-    -- Additional lua configuration, makes nvim stuff amazing!
-    -- https://github.com/folke/neodev.nvim
-    { 'folke/neodev.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',             opts = {} },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'folke/neodev.nvim',             opts = {} },
   },
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      -- Install these LSPs automatically
       ensure_installed = {
-        -- 'bashls', -- requires npm to be installed
-        -- 'cssls', -- requires npm to be installed
-        -- 'html', -- requires npm to be installed
+        'bashls',
+        'cssls',
+        'html',
         'lua_ls',
-        -- 'jsonls', -- requires npm to be installed
+        'jsonls',
         'lemminx',
         'marksman',
         'quick_lint_js',
-        -- 'tsserver', -- requires npm to be installed
-        -- 'yamlls', -- requires npm to be installed
-        -- 'basedpyright',
-        'pyright',
+        'yamlls',
+        -- 'pyright',
+        'basedpyright',
         'ruff',
-        -- 'reorder-python-imports',
-        -- 'terraformls',
       },
       automatic_enable = true,
     })
+
+    local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
+
+    for name, icon in pairs(symbols) do
+      local hl = "DiagnosticSign" .. name
+      vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+    end
+
+    -- Faster LSP startup
+    vim.opt.updatetime = 250 -- Faster CursorHold trigger
 
     vim.lsp.config('lua_ls', {
       settings = {
@@ -63,16 +54,44 @@ return {
       },
     })
 
-    vim.lsp.config('dartls', {
-      on_attach = function(client, bufnr)
-        -- Your custom LSP key mappings and on_attach logic for dartls
-        local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    -- vim.lsp.config('terraformls', {
+    --   settings = {}
+    -- })
+
+    -- vim.lsp.config('basedpyright', {
+    --   settings = {
+    --     pyright = {
+    --       -- Using Ruff's import organizer
+    --       disableOrganizeImports = true,
+    --     },
+    --     python = {
+    --       analysis = {
+    --         -- Ignore all files for analysis to exclusively use Ruff for linting
+    --         ignore = { '*' },
+    --       },
+    --     },
+    --   },
+    -- })
+    vim.lsp.config('ruff', {
+      init_options = {
+        settings = {
+          -- Ruff language server settings go here
+        }
+      }
+    })
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+          return
         end
-        -- Add specific key mappings for dartls if needed
-        map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-        -- Add other dartls specific key mappings here if needed
+        if client.name == 'ruff' then
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+        end
       end,
+      desc = 'LSP: Disable hover capability from Ruff',
     })
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
