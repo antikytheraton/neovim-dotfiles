@@ -4,6 +4,6 @@ return {
   -- install the latest stable version
   version = "*",
   config = function()
-    require("telescope").load_extension "frecency"
+    require("telescope").load_extension("frecency")
   end,
 }

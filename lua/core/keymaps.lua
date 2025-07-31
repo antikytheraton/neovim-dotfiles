@@ -4,11 +4,11 @@ vim.g.mapleader = ","
 local keymap = vim.keymap
 
 -- General keymaps
-keymap.set("n", "<leader>wq", ":wq<CR>")        -- save and quit
+-- keymap.set("n", "<leader>wq", ":wq<CR>")        -- save and quit
 keymap.set("n", "<leader>/", ":Commentary<CR>") -- comment code
 keymap.set("v", "<leader>/", ":Commentary<CR>") -- comment code
 keymap.set("n", "<leader>qq", ":q!<CR>")        -- quit without saving
-keymap.set("n", "<leader>ww", ":w<CR>")         -- save
+-- keymap.set("n", "<leader>ww", ":w<CR>")         -- save
 keymap.set("n", "gx", ":!open <c-r><c-a><CR>")  -- open URL under cursor
 keymap.set("x", "<Tab>", ">gv|")                -- Use tab for indenting in visual mode
 keymap.set("x", "<S-Tab>", "<gv")
@@ -28,12 +28,12 @@ end, { desc = 'Toggle visible whitespace' })
 -- Split window management
 keymap.set("n", "<leader>|", "<C-w>v")      -- split window vertically
 keymap.set("n", "<leader>-", "<C-w>s")      -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=")     -- make split windows equal width
-keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
-keymap.set("n", "<leader>sj", "<C-w>-")     -- make split window height shorter
-keymap.set("n", "<leader>sk", "<C-w>+")     -- make split windows height taller
-keymap.set("n", "<leader>sl", "<C-w>>5")    -- make split windows width bigger
-keymap.set("n", "<leader>sh", "<C-w><5")    -- make split windows width smaller
+keymap.set("n", "<leader>we", "<C-w>=")     -- make split windows equal width
+keymap.set("n", "<leader>wx", ":close<CR>") -- close split window
+keymap.set("n", "<leader>wj", "<C-w>-")     -- make split window height shorter
+keymap.set("n", "<leader>wk", "<C-w>+")     -- make split windows height taller
+keymap.set("n", "<leader>wl", "<C-w>>5")    -- make split windows width bigger
+keymap.set("n", "<leader>wh", "<C-w><5")    -- make split windows width smaller
 
 -- Tab management
 keymap.set("n", "<leader>to", ":tabnew<CR>")   -- open a new tab
@@ -66,23 +66,25 @@ keymap.set("n", "<leader>ee", ":NvimTreeFindFile<CR>") -- find file in file expl
 -- keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
 
 -- Telescope
-keymap.set("n", "<C-p>", "<cmd>Telescope frecency workspace=CWD path_display={'shorten'}<cr>")
-keymap.set("n", "<leader>ff", "<cmd>Telescope frecency workspace=CWD path_display={'shorten'}<cr>")
--- keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})                                              -- fuzzy find files in project
-keymap.set('n', '<leader>ft', require('telescope.builtin').live_grep, {})                 -- grep file contents in project
-keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, {})               -- grep file contents in project
-keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, {})                 -- grep file contents in project
-keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})                   -- fuzzy find open buffers
-keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})                 -- fuzzy find help tags
-keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {}) -- fuzzy find in current file buffer
+-- keymap.set("n", "<C-p>", "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>")
+-- keymap.set("n", "<leader>ff", "<cmd>Telescope frecency workspace=CWD path_display={'shorten'}<cr>")
+keymap.set('n', '<C-p>', require('telescope.builtin').find_files, {})                                                -- fuzzy find files in project
+keymap.set('n', '<leader>ff', "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>", {})              -- fuzzy find files in project
+keymap.set('n', '<leader>st', require('telescope.builtin').live_grep, {})                                            -- grep file contents in project
+keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, {})                                          -- grep file contents in project
+keymap.set('n', '<leader>sl', require('telescope.builtin').resume, {})                                               --  	Lists the results incl. multi-selections of the previous picker
+keymap.set('n', '<leader>sg', require('telescope.builtin').git_files, {})                                            -- grep file contents in project
+keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, {})                                              -- fuzzy find open buffers
+keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, {})                                            -- fuzzy find help tags
+keymap.set('n', '<leader>ss', require('telescope.builtin').current_buffer_fuzzy_find, {})                            -- fuzzy find in current file buffer
 -- keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
-keymap.set('n', '<leader>fo', "<cmd>Telescope oldfiles<CR>")                              -- previously opened files
-keymap.set('n', '<leader>fc', "<cmd>Telescope neoclip<cr>")                               -- fuzzy find clipboard
+keymap.set('n', '<leader>so', "<cmd>Telescope oldfiles<CR>")                                                         -- previously opened files
+keymap.set('n', '<leader>sc', "<cmd>Telescope neoclip<cr>")                                                          -- fuzzy find clipboard
 -- fuzzy find LSP/class symbolskey
-keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})        -- fuzzy find LSP/incoming calls
--- keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({default_text=":method:"}) end) -- fuzzy find methods in current class
-keymap.set('n', '<leader>fm',
-  function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end) -- fuzzy find methods in current class
+keymap.set('n', '<leader>si', require('telescope.builtin').lsp_incoming_calls, {})                                   -- fuzzy find LSP/incoming calls
+keymap.set('n', '<leader>sM', function() require('telescope.builtin').treesitter({ default_text = ":method:" }) end) -- fuzzy find methods in current class
+keymap.set('n', '<leader>sF',
+  function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end)                    -- fuzzy find methods in current class
 -- keymap.set('n', '<leader>ft',
 --   function()                                                                                                                  -- grep file contents in current nvim-tree node
 --     local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
