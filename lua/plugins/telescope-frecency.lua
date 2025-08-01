@@ -3,7 +3,8 @@ return {
   "nvim-telescope/telescope-frecency.nvim",
   -- install the latest stable version
   version = "*",
-  config = function()
+  config = function(_, opts)
+    opts.db_safe_mode = false
     require("telescope").load_extension("frecency")
   end,
 }

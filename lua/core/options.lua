@@ -88,18 +88,18 @@ local Path = require("plenary.path")
 
 local swapdir = Path:new(Path.path.home .. "/.cache/nvim/swap/")
 if not swapdir:exists() then
-	swapdir:mkdir()
+  swapdir:mkdir()
 end
 vim.o.directory = tostring(swapdir)
 
 local backupdir = Path:new(Path.path.home .. "/.cache/nvim/backup/")
 if not backupdir:exists() then
-	backupdir:mkdir()
+  backupdir:mkdir()
 end
 vim.o.backupdir = tostring(backupdir)
 
 local undodir = Path:new(Path.path.home .. "/.cache/nvim/undo/")
 if not undodir:exists() then
-	undodir:mkdir()
+  undodir:mkdir()
 end
 vim.o.undodir = tostring(undodir)

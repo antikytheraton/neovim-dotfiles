@@ -16,7 +16,7 @@ vim.cmd([[ command TestFile lua require("neotest").run.run(vim.fn.expand("%"))<c
 vim.cmd([[ command TestRun lua require("neotest").run.run()<cr> ]])
 vim.cmd([[ command TestAttach lua require("neotest").run.attach()<cr> ]])
 -- Force pyright LSP enabled (for Python files)
-vim.cmd([[ command EnablePythonLSP lua vim.lsp.enable('pyright')<cr> ]])
+vim.cmd([[ command EnablePythonLSP lua vim.lsp.enable('basedpyright')<cr> ]])
 
 -- Make current file executable
 vim.api.nvim_create_user_command('MakeExecutable',
@@ -31,3 +31,17 @@ vim.api.nvim_create_user_command('MakeExecutable',
   end,
   { desc = 'Make the current file executable' }
 )
+
+vim.api.nvim_create_user_command("IPDB", function()
+  local line = "__import__('ipdb').set_trace(context=20)  # HACK: add breakpoint for debugging"
+  vim.api.nvim_put({ line }, "l", true, true)
+end, {
+  desc = "Insert Python IPDB breakpoint",
+})
+
+vim.api.nvim_create_user_command("TT", function()
+  local line = "import typing as t"
+  vim.api.nvim_put({ line }, "l", true, true)
+end, {
+  desc = "Add type hints to the current line",
+})

@@ -66,9 +66,9 @@ keymap.set("n", "<leader>ee", ":NvimTreeFindFile<CR>") -- find file in file expl
 -- keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
 
 -- Telescope
--- keymap.set("n", "<C-p>", "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>")
+keymap.set("n", "<C-p>", "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>")
 -- keymap.set("n", "<leader>ff", "<cmd>Telescope frecency workspace=CWD path_display={'shorten'}<cr>")
-keymap.set('n', '<C-p>', require('telescope.builtin').find_files, {})                                                -- fuzzy find files in project
+-- keymap.set('n', '<C-p>', require('telescope.builtin').find_files, {})                                                -- fuzzy find files in project
 keymap.set('n', '<leader>ff', "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>", {})              -- fuzzy find files in project
 keymap.set('n', '<leader>st', require('telescope.builtin').live_grep, {})                                            -- grep file contents in project
 keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, {})                                          -- grep file contents in project
