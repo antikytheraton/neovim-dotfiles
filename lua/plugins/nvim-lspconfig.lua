@@ -43,9 +43,20 @@ return {
               'require',
             },
           },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file('', true),
+          },
+          telemetry = {
+            enable = false,
+          },
         },
       },
     })
+
+    vim.lsp.enable('tflint')
+    vim.lsp.enable('tfsec')
+    -- vim.print(vim.lsp.config['tflint'])
+    -- vim.print(vim.lsp.config['terraformls'])
 
     -- vim.lsp.config('terraformls', {
     --   settings = {}
