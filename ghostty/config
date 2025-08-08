@@ -1,0 +1,42 @@
+
+# Fonts
+font-family = "Iosevka NF"
+font-size = 19
+cursor-style = block
+# to live reloading press Cmd+Shift+,
+# custom-shader = ./ghostty-shaders/inside-the-matrix.glsl
+
+# Theme
+# night-owl
+foreground = #d6deeb
+background = #011627
+background-opacity = 0.7
+background-blur = true
+macos-titlebar-style = transparent
+selection-foreground = #ffffff
+selection-background = #1d3b53
+
+cursor-color = #80a4c2
+
+palette = 0=#06101e
+palette = 1=#ea6847
+palette = 2=#ea6847
+palette = 3=#35b5ff
+palette = 4=#22536f
+palette = 5=#ea6847
+palette = 6=#66def9
+palette = 7=#004752
+palette = 8=#22536f
+palette = 9=#ea6847
+palette = 10=#35b5ff
+palette = 11=#ea6847
+palette = 12=#e2d9c5
+palette = 13=#fa7a61
+palette = 14=#e2d9c5
+palette = 15=#66def9
+foreground = #e2d9c5
+background = #06101e
+cursor-color = #ea6847
+cursor-text = #06101e
+selection-background = #22536f
+selection-foreground = #e2d9c5

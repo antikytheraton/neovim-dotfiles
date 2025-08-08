@@ -1,0 +1,24 @@
+
+palette = 0=#06101e
+palette = 1=#fd5e3a
+palette = 2=#fd5e3a
+palette = 3=#35b5ff
+palette = 4=#22536f
+palette = 5=#fd5e3a
+palette = 6=#66def9
+palette = 7=#004752
+palette = 8=#22536f
+palette = 9=#fd5e3a
+palette = 10=#35b5ff
+palette = 11=#fd5e3a
+palette = 12=#e2d9c5
+palette = 13=#fa7a61
+palette = 14=#e2d9c5
+palette = 15=#66def9
+foreground = #e2d9c5
+background = #06101e
+# background = transparent  # If supported by your terminal
+cursor-color = #fd5e3a
+cursor-text = #06101e
+selection-background = #22536f
+selection-foreground = #e2d9c5
