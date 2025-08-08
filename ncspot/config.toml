@@ -1,0 +1,27 @@
+# use_nerdfont = true
+
+[keybindings]
+# "F7" = "previous"
+# "F8" = "playpause"
+# "F9" = "next"
+# "gg" = "move top"
+# "Shift+g" = "move down 15"
+
+[theme]
+background = "#06101e"
+primary = "#e2d9c5"
+secondary = "#004752"
+title = "#35b5ff"
+playing = "#35b5ff"
+playing_selected = "#06101e"
+playing_bg = "#06101e"
+highlight = "#06101e"
+highlight_bg = "#66def9"
+error = "#e2d9c5"
+error_bg = "#fd5e3a"
+statusbar = "#06101e"
+statusbar_progress = "#fd5e3a"
+statusbar_bg = "#fd5e3a"
+cmdline = "#e2d9c5"
+cmdline_bg = "#06101e"
+search_match = "#fd5e3a"
