@@ -1,0 +1,169 @@
+-- Set leader key to space
+vim.g.mapleader = ","
+
+local keymap = vim.keymap
+
+-- General keymaps
+-- keymap.set("n", "<leader>wq", ":wq<CR>")        -- save and quit
+keymap.set("n", "<leader>/", ":Commentary<CR>") -- comment code
+keymap.set("v", "<leader>/", ":Commentary<CR>") -- comment code
+keymap.set("n", "<leader>qq", ":q!<CR>")        -- quit without saving
+-- keymap.set("n", "<leader>ww", ":w<CR>")         -- save
+keymap.set("n", "gx", ":!open <c-r><c-a><CR>")  -- open URL under cursor
+keymap.set("x", "<Tab>", ">gv|")                -- Use tab for indenting in visual mode
+keymap.set("x", "<S-Tab>", "<gv")
+keymap.set("n", "<Esc>", ":noh<CR>")            -- Clear any highlights when <esc> is pressed
+keymap.set("n", "j", "gj")                      -- Move one up/down display line instead of physicial line
+keymap.set("n", "k", "gk")
+keymap.set("v", "p", "pgvy")                    -- Have the same buffer on clipboard for multiple pastes
+keymap.set("n", "n", "nzzzv")                   -- Stay centered jumping between search results
+keymap.set("n", "N", "Nzzzv")
+keymap.set("c", "Q", "q")                       -- Fix some common typos
+keymap.set("c", "W", "w")
+keymap.set('n', '<leader>tl', function()
+  vim.opt.list = not vim.opt.list:get()
+end, { desc = 'Toggle visible whitespace' })
+
+
+-- Split window management
+keymap.set("n", "<leader>|", "<C-w>v")      -- split window vertically
+keymap.set("n", "<leader>-", "<C-w>s")      -- split window horizontally
+keymap.set("n", "<leader>we", "<C-w>=")     -- make split windows equal width
+keymap.set("n", "<leader>wx", ":close<CR>") -- close split window
+keymap.set("n", "<leader>wj", "<C-w>-")     -- make split window height shorter
+keymap.set("n", "<leader>wk", "<C-w>+")     -- make split windows height taller
+keymap.set("n", "<leader>wl", "<C-w>>5")    -- make split windows width bigger
+keymap.set("n", "<leader>wh", "<C-w><5")    -- make split windows width smaller
+
+-- Tab management
+keymap.set("n", "<leader>to", ":tabnew<CR>")   -- open a new tab
+keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close a tab
+keymap.set("n", "<leader>tn", ":tabn<CR>")     -- next tab
+keymap.set("n", "<leader>tp", ":tabp<CR>")     -- previous tab
+
+-- Diff keymaps
+keymap.set("n", "<leader>cc", ":diffput<CR>")   -- put diff from current to other during diff
+keymap.set("n", "<leader>cj", ":diffget 1<CR>") -- get diff from left (local) during merge
+keymap.set("n", "<leader>ck", ":diffget 3<CR>") -- get diff from right (remote) during merge
+keymap.set("n", "<leader>cn", "]c")             -- next diff hunk
+keymap.set("n", "<leader>cp", "[c")             -- previous diff hunk
+
+-- Quickfix keymaps
+keymap.set("n", "<leader>qo", ":copen<CR>")  -- open quickfix list
+keymap.set("n", "<leader>qf", ":cfirst<CR>") -- jump to first quickfix list item
+keymap.set("n", "<leader>qn", ":cnext<CR>")  -- jump to next quickfix list item
+keymap.set("n", "<leader>qp", ":cprev<CR>")  -- jump to prev quickfix list item
+keymap.set("n", "<leader>ql", ":clast<CR>")  -- jump to last quickfix list item
+keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
+
+-- Vim-maximizer
+keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle maximize tab
+
+-- Nvim-tree
+-- keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>")   -- toggle file explorer
+keymap.set("n", "<leader>ee", ":NvimTreeFindFile<CR>") -- find file in file explorer
+-- keymap.set("n", "<leader>er", ":NvimTreeFocus<CR>")    -- toggle focus to file explorer
+-- keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
+
+-- Telescope
+keymap.set("n", "<C-p>", "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>")
+-- keymap.set("n", "<leader>ff", "<cmd>Telescope frecency workspace=CWD path_display={'shorten'}<cr>")
+-- keymap.set('n', '<C-p>', require('telescope.builtin').find_files, {})                                                -- fuzzy find files in project
+keymap.set('n', '<leader>ff', "<cmd>Telescope frecency workspace=CWD path_display={'smart'}<cr>", {})              -- fuzzy find files in project
+keymap.set('n', '<leader>st', require('telescope.builtin').live_grep, {})                                            -- grep file contents in project
+keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, {})                                          -- grep file contents in project
+keymap.set('n', '<leader>sl', require('telescope.builtin').resume, {})                                               --  	Lists the results incl. multi-selections of the previous picker
+keymap.set('n', '<leader>sg', require('telescope.builtin').git_files, {})                                            -- grep file contents in project
+keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, {})                                              -- fuzzy find open buffers
+keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, {})                                            -- fuzzy find help tags
+keymap.set('n', '<leader>ss', require('telescope.builtin').current_buffer_fuzzy_find, {})                            -- fuzzy find in current file buffer
+-- keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
+keymap.set('n', '<leader>so', "<cmd>Telescope oldfiles<CR>")                                                         -- previously opened files
+keymap.set('n', '<leader>sc', "<cmd>Telescope neoclip<cr>")                                                          -- fuzzy find clipboard
+-- fuzzy find LSP/class symbolskey
+keymap.set('n', '<leader>si', require('telescope.builtin').lsp_incoming_calls, {})                                   -- fuzzy find LSP/incoming calls
+keymap.set('n', '<leader>sM', function() require('telescope.builtin').treesitter({ default_text = ":method:" }) end) -- fuzzy find methods in current class
+keymap.set('n', '<leader>sF',
+  function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end)                    -- fuzzy find methods in current class
+-- keymap.set('n', '<leader>ft',
+--   function()                                                                                                                  -- grep file contents in current nvim-tree node
+--     local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
+--     if not success or not node then return end;
+--     require('telescope.builtin').live_grep({ search_dirs = { node.absolute_path } })
+--   end)
+
+-- Git-blame
+keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>')              -- open gitlazy
+keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>")           -- toggle git blame
+keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>") -- show latest modified files
+
+-- Harpoon
+keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
+keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)
+keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
+keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
+keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
+keymap.set("n", "<leader>h4", function() require("harpoon.ui").nav_file(4) end)
+keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end)
+keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end)
+keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end)
+keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end)
+keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end)
+
+-- Vim REST Console
+keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>") -- Run REST query
+
+-- LSP
+-- keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+keymap.set('n', 'gd', '<cmd>:Trouble lsp_definitions<CR>')
+-- keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+keymap.set('n', 'gD', '<cmd>:Trouble lsp_declarations<CR>')
+-- keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+keymap.set('n', 'gi', '<cmd>:Trouble lsp_implementations<CR>')
+-- keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+keymap.set('n', 'gt', '<cmd>:Trouble lsp_type_definitions<CR>')
+-- keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+keymap.set('n', 'gr', '<cmd>:Trouble lsp_references<CR>')
+-- keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>')
+keymap.set('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
+keymap.set('v', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
+keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+-- keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
+keymap.set('n', '[q', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+keymap.set('n', ']q', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+keymap.set('n', '<leader>ts', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')
+
+-- Debugging
+keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
+keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+keymap.set("n", "<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>")
+keymap.set("n", '<leader>br', "<cmd>lua require'dap'.clear_breakpoints()<cr>")
+keymap.set("n", '<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>')
+keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>")
+keymap.set("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>")
+keymap.set("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>")
+keymap.set("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>")
+keymap.set("n", '<leader>dd', function()
+  require('dap').disconnect(); require('dapui').close();
+end)
+keymap.set("n", '<leader>dt', function()
+  require('dap').terminate(); require('dapui').close();
+end)
+keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>")
+keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
+keymap.set("n", '<leader>di', function() require "dap.ui.widgets".hover() end)
+keymap.set("n", '<leader>d?',
+  function()
+    local widgets = require "dap.ui.widgets"; widgets.centered_float(widgets.scopes)
+  end)
+keymap.set("n", '<leader>df', '<cmd>Telescope dap frames<cr>')
+keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
+keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({ default_text = ":E:" }) end)
+
+-- Spider keymaps overrides
+keymap.set({ "n", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+keymap.set({ "n", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+keymap.set({ "n", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+keymap.set({ "n", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
