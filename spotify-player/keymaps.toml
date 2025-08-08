@@ -1,0 +1,6 @@
+[[keymaps]]
+command = "VolumeUp"
+key_sequence = "]"
+[[keymaps]]
+command = "VolumeDown"
+key_sequence = "["
