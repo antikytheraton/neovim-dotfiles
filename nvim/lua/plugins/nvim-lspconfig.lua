@@ -7,6 +7,7 @@ return {
     { 'j-hui/fidget.nvim',             opts = {} },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'folke/neodev.nvim',             opts = {} },
+    { 'aquasecurity/vim-tfsec' },
   },
   config = function()
     require('mason').setup()
@@ -53,8 +54,7 @@ return {
       },
     })
 
-    vim.lsp.enable('tflint')
-    vim.lsp.enable('tfsec')
+    vim.lsp.config('tfsec', {})
     -- vim.print(vim.lsp.config['tflint'])
     -- vim.print(vim.lsp.config['terraformls'])
 
