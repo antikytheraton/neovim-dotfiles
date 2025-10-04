@@ -17,15 +17,9 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			{ "tzachar/cmp-tabnine" },
-			-- { 'L3MON4D3/LuaSnip' },
-			-- { 'saadparwaiz1/cmp_luasnip' },
-			-- { 'hrsh7th/cmp-nvim-lsp' },
-			-- { 'rafamadriz/friendly-snippets' },
-			-- { 'hrsh7th/cmp-cmdline' },
-			-- { 'ray-x/cmp-treesitter' },
 			{ "mgalliou/blink-cmp-tmux" },
-			-- { 'hrsh7th/cmp-emoji' },
 			{ "moyiz/blink-emoji.nvim" },
+			{ "disrupted/blink-cmp-conventional-commits" },
 		},
 
 		-- use a release tag to download pre-built binaries
@@ -66,7 +60,7 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "emoji", "tmux" },
+				default = { "lsp", "path", "snippets", "buffer", "emoji", "tmux", "conventional_commits" },
 				providers = {
 					cmp_tabnine = {
 						name = "cmp_tabnine",
@@ -101,6 +95,16 @@ return {
 							triggered_only = false,
 							trigger_chars = { "." },
 						},
+					},
+					conventional_commits = {
+						name = "Conventional Commits",
+						module = "blink-cmp-conventional-commits",
+						enabled = function()
+							return vim.bo.filetype == "gitcommit"
+						end,
+						---@module 'blink-cmp-conventional-commits'
+						---@type blink-cmp-conventional-commits.Options
+						opts = {}, -- none so far
 					},
 				},
 			},
