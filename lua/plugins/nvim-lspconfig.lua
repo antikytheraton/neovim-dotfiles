@@ -8,6 +8,7 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'folke/neodev.nvim',             opts = {} },
     { 'aquasecurity/vim-tfsec' },
+    { 'saghen/blink.cmp' },
   },
   config = function()
     require('mason').setup()
@@ -24,15 +25,17 @@ return {
         'yamlls',
         -- 'pyright',
         'basedpyright',
+        -- 'pyrefly',
         'ruff',
       },
       automatic_enable = true,
     })
-
     -- Faster LSP startup
     vim.opt.updatetime = 250 -- Faster CursorHold trigger
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     vim.lsp.config('lua_ls', {
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -53,8 +56,13 @@ return {
         },
       },
     })
+    vim.lsp.config('basedpyright', {
+      capabilities = capabilities,
+    })
 
-    vim.lsp.config('tfsec', {})
+    vim.lsp.config('tfsec', {
+      capabilities = capabilities,
+    })
     -- vim.print(vim.lsp.config['tflint'])
     -- vim.print(vim.lsp.config['terraformls'])
 
