@@ -26,7 +26,9 @@ return {
         -- 'pyright',
         'basedpyright',
         -- 'pyrefly',
+        'gopls',
         'ruff',
+        -- 'tfsec',
       },
       automatic_enable = true,
     })
@@ -60,9 +62,13 @@ return {
       capabilities = capabilities,
     })
 
-    vim.lsp.config('tfsec', {
-      capabilities = capabilities,
-    })
+    -- vim.lsp.config('tfsec', {
+    --   capabilities = capabilities,
+    -- })
+    -- vim.lsp.config('gopls', {
+    --   capabilities = capabilities,
+    -- })
+
     -- vim.print(vim.lsp.config['tflint'])
     -- vim.print(vim.lsp.config['terraformls'])
 
@@ -85,6 +91,7 @@ return {
     --   },
     -- })
     vim.lsp.config('ruff', {
+      capabilities = capabilities,
       init_options = {
         settings = {
           -- Ruff language server settings go here
