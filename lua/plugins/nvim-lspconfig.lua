@@ -4,9 +4,19 @@ return {
   dependencies = {
     { 'mason-org/mason.nvim' },
     { 'mason-org/mason-lspconfig.nvim' },
-    { 'j-hui/fidget.nvim',             opts = {} },
+    {
+      'j-hui/fidget.nvim',
+      opts = {
+        -- Add 'NvimTree' to the 'notification.window.avoid' list to ensure Fidget continues to avoid nvim-tree.lua's file explorer.
+        notification = {
+          window = {
+            avoid = { 'NvimTree', 'DressingInput' }
+          }
+        }
+      }
+    },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { 'folke/neodev.nvim',             opts = {} },
+    { 'folke/neodev.nvim',     opts = {} },
     { 'aquasecurity/vim-tfsec' },
     { 'saghen/blink.cmp' },
   },
