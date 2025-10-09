@@ -4,6 +4,7 @@ return {
     "zbirenbaum/copilot.lua",
     requires = {
       "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+      "AndreM222/copilot-lualine",
     },
     cmd = "Copilot",
     event = "InsertEnter",
@@ -95,7 +96,7 @@ return {
             },
           },
         },
-        ghost_text = { enabled = true },
+        -- ghost_text = { enabled = true },
       },
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
