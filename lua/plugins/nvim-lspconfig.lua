@@ -34,7 +34,7 @@ return {
         "quick_lint_js",
         "yamlls",
         -- 'pyright',
-        "basedpyright",
+        -- 'basedpyright',
         -- 'pyrefly',
         "gopls",
         "ruff",
@@ -44,9 +44,10 @@ return {
     })
     -- Faster LSP startup
     vim.opt.updatetime = 250 -- Faster CursorHold trigger
-    -- local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     vim.lsp.config("lua_ls", {
+      -- capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -67,7 +68,7 @@ return {
         },
       },
     })
-    vim.lsp.config("basedpyright", {})
+    -- vim.lsp.config("basedpyright", {})
 
     -- vim.lsp.config('tfsec', {
     -- })

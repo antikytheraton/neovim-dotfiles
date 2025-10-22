@@ -156,7 +156,7 @@ return {
           copilot = {
             name = "copilot",
             module = "blink-cmp-copilot",
-            score_offset = 100,
+            score_offset = 1,
             async = true,
             transform_items = function(_, items)
               local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
