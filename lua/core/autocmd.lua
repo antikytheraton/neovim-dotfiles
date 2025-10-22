@@ -133,6 +133,7 @@ vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+vim.cmd([[autocmd BufRead,BufNewFile *.log set filetype=log]])
 
 -- listen lsp-progress event and refresh lualine
 vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
@@ -140,4 +141,13 @@ vim.api.nvim_create_autocmd("User", {
 	group = "lualine_augroup",
 	pattern = "LspProgressStatusUpdated",
 	callback = require("lualine").refresh,
+})
+
+vim.api.nvim_create_autocmd("InsertCharPre", {
+	callback = function()
+		local buf = vim.api.nvim_get_current_buf()
+		local name = vim.api.nvim_buf_get_name(buf)
+		local ft = vim.bo[buf].filetype
+		vim.notify(string.format("Buf %d: %s [%s]", buf, name ~= "" and name or "(no name)", ft))
+	end,
 })

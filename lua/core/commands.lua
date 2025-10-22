@@ -3,8 +3,8 @@
 ------------------------------------------------------
 
 -- UNIX - DOS formatting commands
-vim.cmd([[ command Dos2Unix !dos2unix %<cr> ]])
-vim.cmd([[ command Unix2Dos !unix2dos %<cr> ]])
+vim.cmd([[ command Dos2Unix silent! !dos2unix %<cr> ]])
+vim.cmd([[ command Unix2Dos silent! !unix2dos %<cr> ]])
 -- Format JSON using jq
 vim.cmd([[ command JQ %!jq . <cr> ]])
 -- Apply reorder-python-imports formatter

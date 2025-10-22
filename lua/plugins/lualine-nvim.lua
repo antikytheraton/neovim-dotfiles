@@ -99,9 +99,15 @@ return {
             show_colors = false,
             show_loading = true,
           },
-          "encoding",               -- File encoding (e.g., utf-8)
-          "fileformat",             -- File format (e.g., unix, windows)
-          "filetype",               -- File type (e.g., lua, python)
+          "encoding",   -- File encoding (e.g., utf-8)
+          "fileformat", -- File format (e.g., unix, windows)
+          "filetype",   -- File type (e.g., lua, python)
+          function()    -- Buffer type
+            local buf = vim.api.nvim_get_current_buf()
+            local name = vim.api.nvim_buf_get_name(buf)
+            local ft = vim.bo[buf].filetype
+            return string.format("[%s]", ft == "" and "no ft" or ft)
+          end
         },
         lualine_y = { "progress" }, -- Progress through the file (e.g., 45%)
         lualine_z = { "location" }, -- Location in the file (e.g., line 10, column 20)
@@ -110,7 +116,14 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "filename" },
-        lualine_x = { "location" },
+        lualine_x = { "location",
+          function() -- Buffer type
+            local buf = vim.api.nvim_get_current_buf()
+            local name = vim.api.nvim_buf_get_name(buf)
+            local ft = vim.bo[buf].filetype
+            return string.format("[%s]", ft == "" and "no ft" or ft)
+          end
+        },
         lualine_y = {},
         lualine_z = {},
       },
