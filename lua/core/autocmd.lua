@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
+    "",
 		"PlenaryTestPopup",
 		"checkhealth",
 		"dbout",
@@ -143,11 +144,11 @@ vim.api.nvim_create_autocmd("User", {
 	callback = require("lualine").refresh,
 })
 
-vim.api.nvim_create_autocmd("InsertCharPre", {
-	callback = function()
-		local buf = vim.api.nvim_get_current_buf()
-		local name = vim.api.nvim_buf_get_name(buf)
-		local ft = vim.bo[buf].filetype
-		vim.notify(string.format("Buf %d: %s [%s]", buf, name ~= "" and name or "(no name)", ft))
-	end,
-})
+-- vim.api.nvim_create_autocmd("InsertCharPre", {
+-- 	callback = function()
+-- 		local buf = vim.api.nvim_get_current_buf()
+-- 		local name = vim.api.nvim_buf_get_name(buf)
+-- 		local ft = vim.bo[buf].filetype
+-- 		vim.notify(string.format("Buf %d: %s [%s]", buf, name ~= "" and name or "(no name)", ft))
+-- 	end,
+-- })

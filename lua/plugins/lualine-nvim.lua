@@ -4,7 +4,8 @@ return {
     "linrongbin16/lsp-progress.nvim",
     config = function()
       require("lsp-progress").setup({
-        spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+        -- spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+        spinner = { "✶", "✸", "✹", "✺", "✹", "✷" },
         client_format = function(client_name, spinner, series_messages)
           return #series_messages > 0 and ("[" .. client_name .. "] " .. spinner) or nil
         end,
@@ -19,7 +20,7 @@ return {
       "nvim-tree/nvim-web-devicons", -- fancy icons
       -- https://github.com/linrongbin16/lsp-progress.nvim
       "linrongbin16/lsp-progress.nvim",
-      "AndreM222/copilot-lualine", -- Copilot status
+      -- "AndreM222/copilot-lualine", -- Copilot status
     },
     opts = {
       options = {
@@ -66,48 +67,48 @@ return {
           function()
             return require("lsp-progress").progress()
           end,
-          {
-            -- Copilot status (requires copilot-lualine)
-            "copilot",
-            symbols = {
-              status = {
-                icons = {
-                  enabled = " ",
-                  sleep = " ", -- auto-trigger disabled
-                  disabled = " ",
-                  warning = " ",
-                  unknown = " ",
-                },
-                hl = {
-                  enabled = "#50FA7B",
-                  sleep = "#AEB7D0",
-                  disabled = "#6272A4",
-                  warning = "#FFB86C",
-                  unknown = "#FF5555",
-                },
-              },
-              spinners = {
-                "✶",
-                "✸",
-                "✹",
-                "✺",
-                "✹",
-                "✷",
-              },
-              spinner_color = "#6272A4",
-            },
-            show_colors = false,
-            show_loading = true,
-          },
+          -- {
+          --   -- Copilot status (requires copilot-lualine)
+          --   "copilot",
+          --   symbols = {
+          --     status = {
+          --       icons = {
+          --         enabled = " ",
+          --         sleep = " ", -- auto-trigger disabled
+          --         disabled = " ",
+          --         warning = " ",
+          --         unknown = " ",
+          --       },
+          --       hl = {
+          --         enabled = "#50FA7B",
+          --         sleep = "#AEB7D0",
+          --         disabled = "#6272A4",
+          --         warning = "#FFB86C",
+          --         unknown = "#FF5555",
+          --       },
+          --     },
+          --     spinners = {
+          --       "✶",
+          --       "✸",
+          --       "✹",
+          --       "✺",
+          --       "✹",
+          --       "✷",
+          --     },
+          --     spinner_color = "#6272A4",
+          --   },
+          --   show_colors = false,
+          --   show_loading = true,
+          -- },
           "encoding",   -- File encoding (e.g., utf-8)
           "fileformat", -- File format (e.g., unix, windows)
           "filetype",   -- File type (e.g., lua, python)
-          function()    -- Buffer type
-            local buf = vim.api.nvim_get_current_buf()
-            local name = vim.api.nvim_buf_get_name(buf)
-            local ft = vim.bo[buf].filetype
-            return string.format("[%s]", ft == "" and "no ft" or ft)
-          end
+          -- function()    -- Buffer type
+          --   local buf = vim.api.nvim_get_current_buf()
+          --   local name = vim.api.nvim_buf_get_name(buf)
+          --   local ft = vim.bo[buf].filetype
+          --   return string.format("[%s]", ft == "" and "no ft" or ft)
+          -- end
         },
         lualine_y = { "progress" }, -- Progress through the file (e.g., 45%)
         lualine_z = { "location" }, -- Location in the file (e.g., line 10, column 20)
@@ -116,14 +117,14 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "filename" },
-        lualine_x = { "location",
-          function() -- Buffer type
-            local buf = vim.api.nvim_get_current_buf()
-            local name = vim.api.nvim_buf_get_name(buf)
-            local ft = vim.bo[buf].filetype
-            return string.format("[%s]", ft == "" and "no ft" or ft)
-          end
-        },
+        lualine_x = { "location"},
+        --   function() -- Buffer type
+        --     local buf = vim.api.nvim_get_current_buf()
+        --     local name = vim.api.nvim_buf_get_name(buf)
+        --     local ft = vim.bo[buf].filetype
+        --     return string.format("[%s]", ft == "" and "no ft" or ft)
+        --   end
+        -- },
         lualine_y = {},
         lualine_z = {},
       },

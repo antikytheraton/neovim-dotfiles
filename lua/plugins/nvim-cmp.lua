@@ -1,20 +1,21 @@
 return {
   -- add blink.compat
-  {
-    "zbirenbaum/copilot.lua",
-    requires = {
-      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-      "AndreM222/copilot-lualine",
-    },
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   requires = {
+  --     "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+  --     "AndreM222/copilot-lualine",
+  --   },
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --       -- nes = { enabled = false },
+  --     })
+  --   end,
+  -- },
   {
     "saghen/blink.cmp",
 
@@ -24,10 +25,10 @@ return {
       { "mgalliou/blink-cmp-tmux" },
       { "moyiz/blink-emoji.nvim" },
       { "disrupted/blink-cmp-conventional-commits" },
-      {
-        "giuxtaposition/blink-cmp-copilot",
-        after = { "copilot.lua" },
-      }
+      -- {
+      --   "giuxtaposition/blink-cmp-copilot",
+      --   after = { "copilot.lua" },
+      -- }
     },
 
     -- use a release tag to download pre-built binaries
@@ -109,7 +110,7 @@ return {
           "emoji",
           "tmux",
           "conventional_commits",
-          "copilot",
+          -- "copilot",
         },
         per_filetype = {
           DressingInput = {}, -- disable autocomplete for NvimTree
@@ -153,21 +154,21 @@ return {
             ---@type blink-cmp-conventional-commits.Options
             opts = {}, -- none so far
           },
-          copilot = {
-            name = "copilot",
-            module = "blink-cmp-copilot",
-            score_offset = 1,
-            async = true,
-            transform_items = function(_, items)
-              local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-              local kind_idx = #CompletionItemKind + 1
-              CompletionItemKind[kind_idx] = "Copilot"
-              for _, item in ipairs(items) do
-                item.kind = kind_idx
-              end
-              return items
-            end,
-          },
+          -- copilot = {
+          --   name = "copilot",
+          --   module = "blink-cmp-copilot",
+          --   score_offset = 1,
+          --   async = true,
+          --   transform_items = function(_, items)
+          --     local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+          --     local kind_idx = #CompletionItemKind + 1
+          --     CompletionItemKind[kind_idx] = "Copilot"
+          --     for _, item in ipairs(items) do
+          --       item.kind = kind_idx
+          --     end
+          --     return items
+          --   end,
+          -- },
         },
       },
     },

@@ -15,7 +15,7 @@ return {
     --     }
     --   }
     -- },
-    { "hrsh7th/cmp-nvim-lsp" },
+    -- { "hrsh7th/cmp-nvim-lsp" },
     { "folke/neodev.nvim",             opts = {} },
     { "aquasecurity/vim-tfsec" },
     { "saghen/blink.cmp" },
@@ -113,6 +113,7 @@ return {
         if client.name == "ruff" then
           -- Disable hover in favor of Pyright
           client.server_capabilities.hoverProvider = false
+          -- client.server_capabilities.textDocumentSync.change = 1
         end
       end,
       desc = "LSP: Disable hover capability from Ruff",
