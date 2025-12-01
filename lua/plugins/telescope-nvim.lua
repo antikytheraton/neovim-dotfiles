@@ -15,7 +15,7 @@ return {
 					return vim.fn.executable("make") == 1
 				end,
 			},
-			{ "nvim-telescope/telescope-frecency.nvim" },
+			-- { "nvim-telescope/telescope-frecency.nvim" },
 		},
 		opts = {
 			defaults = {
@@ -69,9 +69,9 @@ return {
 			require("telescope-frecency").setup({
 				db_safe_mode = false,
 				matcher = "fuzzy",
-				scoring_function = function(recency, fzy_score)
-					return -recency
-				end,
+				-- scoring_function = function(recency, fzy_score)
+				-- 	return -recency
+				-- end,
 			})
 			require("telescope").load_extension("frecency")
 		end,
