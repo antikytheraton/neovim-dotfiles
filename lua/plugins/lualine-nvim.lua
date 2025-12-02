@@ -20,7 +20,7 @@ return {
       "nvim-tree/nvim-web-devicons", -- fancy icons
       -- https://github.com/linrongbin16/lsp-progress.nvim
       "linrongbin16/lsp-progress.nvim",
-      "AndreM222/copilot-lualine", -- Copilot status
+      -- "AndreM222/copilot-lualine", -- Copilot status
     },
     opts = {
       options = {
@@ -67,39 +67,39 @@ return {
           function()
             return require("lsp-progress").progress()
           end,
-          {
-            -- Copilot status (requires copilot-lualine)
-            "copilot",
-            symbols = {
-              status = {
-                icons = {
-                  enabled = " ",
-                  sleep = " ", -- auto-trigger disabled
-                  disabled = " ",
-                  warning = " ",
-                  unknown = " ",
-                },
-                hl = {
-                  enabled = "#50FA7B",
-                  sleep = "#AEB7D0",
-                  disabled = "#6272A4",
-                  warning = "#FFB86C",
-                  unknown = "#FF5555",
-                },
-              },
-              spinners = {
-                "✶",
-                "✸",
-                "✹",
-                "✺",
-                "✹",
-                "✷",
-              },
-              spinner_color = "#6272A4",
-            },
-            show_colors = false,
-            show_loading = true,
-          },
+          -- {
+          --   -- Copilot status (requires copilot-lualine)
+          --   "copilot",
+          --   symbols = {
+          --     status = {
+          --       icons = {
+          --         enabled = " ",
+          --         sleep = " ", -- auto-trigger disabled
+          --         disabled = " ",
+          --         warning = " ",
+          --         unknown = " ",
+          --       },
+          --       hl = {
+          --         enabled = "#50FA7B",
+          --         sleep = "#AEB7D0",
+          --         disabled = "#6272A4",
+          --         warning = "#FFB86C",
+          --         unknown = "#FF5555",
+          --       },
+          --     },
+          --     spinners = {
+          --       "✶",
+          --       "✸",
+          --       "✹",
+          --       "✺",
+          --       "✹",
+          --       "✷",
+          --     },
+          --     spinner_color = "#6272A4",
+          --   },
+          --   show_colors = false,
+          --   show_loading = true,
+          -- },
           "encoding",   -- File encoding (e.g., utf-8)
           "fileformat", -- File format (e.g., unix, windows)
           "filetype",   -- File type (e.g., lua, python)
