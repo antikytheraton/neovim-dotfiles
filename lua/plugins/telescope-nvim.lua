@@ -7,14 +7,6 @@ return {
 		dependencies = {
 			-- https://github.com/nvim-lua/plenary.nvim
 			{ "nvim-lua/plenary.nvim" },
-			{
-				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				cond = function()
-					return vim.fn.executable("make") == 1
-				end,
-			},
 			-- { "nvim-telescope/telescope-frecency.nvim" },
 		},
 		opts = {
@@ -31,9 +23,9 @@ return {
 				},
 				preview = {
 					mime_hook = function(filepath, bufnr, opts)
-						local is_image = function(filepath)
+						local is_image = function(_filepath)
 							local image_extensions = { "png", "jpg" } -- Supported image formats
-							local split_path = vim.split(filepath:lower(), ".", { plain = true })
+							local split_path = vim.split(_filepath:lower(), ".", { plain = true })
 							local extension = split_path[#split_path]
 							return vim.tbl_contains(image_extensions, extension)
 						end
@@ -59,6 +51,28 @@ return {
 				},
 			},
 		},
+	},
+	{
+		-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		-- cond = function()
+		-- 	return vim.fn.executable("make") == 1
+		-- end,
+		config = function(_, opts)
+			require("telescope").setup({
+				extensions = {
+					fzf = {
+						fuzzy = true, -- false will only do exact matching
+						override_generic_sorter = true, -- override the generic sorter
+						override_file_sorter = true, -- override the file sorter
+						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+						-- the default case_mode is "smart_case"
+					},
+				},
+			})
+			require("telescope").load_extension("fzf")
+		end,
 	},
 	{
 		-- https://github.com/nvim-telescope/telescope-frecency.nvim
