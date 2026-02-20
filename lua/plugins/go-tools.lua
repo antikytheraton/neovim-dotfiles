@@ -1,5 +1,5 @@
 return {
-  'fatih/vim-go',
-  lazy = true,
-  build = ':GoUpdateBinaries',
+  -- 'fatih/vim-go',
+  -- lazy = false,
+  -- build = ':GoUpdateBinaries',
 }

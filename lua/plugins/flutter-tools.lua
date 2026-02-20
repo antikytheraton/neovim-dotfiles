@@ -5,5 +5,13 @@ return {
     'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',     -- optional for vim.ui.select
   },
-  config = true,
+  config = function()
+    require("flutter-tools").setup {
+      -- flutter_path = "/home/username/flutter/bin/flutter", -- <-- this takes priority over the lookup
+      fvm = true,
+      widget_guides = {
+        enabled = true,
+      },
+    }
+  end,
 }
