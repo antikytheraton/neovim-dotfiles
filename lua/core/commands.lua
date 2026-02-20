@@ -32,6 +32,20 @@ vim.api.nvim_create_user_command('MakeExecutable',
   { desc = 'Make the current file executable' }
 )
 
+-- Write with sudo permissions
+vim.api.nvim_create_user_command('SudoWrite',
+  function()
+    local file = vim.fn.expand('%:p')
+    if file ~= '' then
+      vim.cmd('write !sudo tee % > /dev/null')
+      print('File written with sudo permissions: ' .. file)
+    else
+      print('No file name')
+    end
+  end,
+  { desc = 'Write the current file with sudo permissions' }
+)
+
 vim.api.nvim_create_user_command("IPDB", function()
   local line = "__import__('ipdb').set_trace(context=20)  # HACK: add breakpoint for debugging"
   vim.api.nvim_put({ line }, "l", true, true)
