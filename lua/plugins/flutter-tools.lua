@@ -7,7 +7,9 @@ return {
   },
   config = function()
     require("flutter-tools").setup {
-      -- flutter_path = "/home/username/flutter/bin/flutter", -- <-- this takes priority over the lookup
+      -- Add the FVM path
+      flutter_path = vim.fn.expand("~/fvm/versions/stable/bin/flutter"), -- Common FVM installation path
+      -- flutter_lookup_cmd = "fvm flutter", -- Use fvm to look up flutter
       fvm = true,
       widget_guides = {
         enabled = true,
