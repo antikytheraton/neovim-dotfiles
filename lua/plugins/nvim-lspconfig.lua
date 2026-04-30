@@ -121,10 +121,23 @@ return {
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
+    ---@diagnostic disable-next-line: duplicate-set-field
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
       opts.border = opts.border or "rounded" -- Set border to rounded
       return open_floating_preview(contents, syntax, opts, ...)
     end
+
+    local function setup_ghostty_lsp()
+      if vim.fn.expand("%:p") == vim.fs.normalize("~/.config/ghostty/config") then
+        vim.lsp.start({
+          name = "ghostty-lsp",
+          cmd = { "ghostty-lsp" },
+          root_dir = vim.fs.normalize("~/.config/ghostty/config")
+        })
+      end
+    end
+
+    vim.api.nvim_create_autocmd("BufRead", { pattern = "*", callback = setup_ghostty_lsp })
   end,
 }
