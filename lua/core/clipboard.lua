@@ -60,4 +60,4 @@ end
 -- opt.clipboard:append("unnamedplus")
 -- opt.clipboard:append("unnamed")
 
--- vim.g.clipboard = 'tmux'
+vim.g.clipboard = 'tmux'
