@@ -54,8 +54,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 
--- local opt = vim.opt
--- opt.clipboard:append("osc52")
+local opt = vim.opt
+opt.clipboard:append("osc52")
 -- opt.clipboard:append("unnamed")
 -- opt.clipboard:append("unnamedplus")
 -- opt.clipboard:append("unnamed")
