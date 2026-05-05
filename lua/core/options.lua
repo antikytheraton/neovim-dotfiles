@@ -41,7 +41,8 @@ vim.diagnostic.config {
 -- Backspace
 opt.backspace = "indent,eol,start"
 
--- Clipboard
+-- Clipboard Management
+vim.g.clipboard = 'osc52'
 opt.clipboard:append("unnamedplus")
 
 -- Split Windows
