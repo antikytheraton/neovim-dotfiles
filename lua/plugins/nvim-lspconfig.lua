@@ -68,6 +68,14 @@ return {
         },
       },
     })
+
+    vim.lsp.config("qmlls", {
+      settings = {
+        qml = {
+          importPath = { "/usr/lib/qt6/qml" },
+        },
+      },
+    })
     -- vim.lsp.config("basedpyright", {})
 
     -- vim.lsp.config('tfsec', {
