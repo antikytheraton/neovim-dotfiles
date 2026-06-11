@@ -44,7 +44,6 @@ return {
     })
     -- Faster LSP startup
     vim.opt.updatetime = 250 -- Faster CursorHold trigger
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     vim.lsp.config("lua_ls", {
       -- capabilities = capabilities,

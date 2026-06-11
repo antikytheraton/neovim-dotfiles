@@ -16,7 +16,8 @@ return {
       { "<leader>s", group = "Search" },
       { "<leader>g", group = "Git" },
       { "<leader>e", group = "Explorer" },
-      { "<leader>x", group = "REST" },
+      { "<leader>r", group = "REST" },
+      { "<leader>x", group = "Diagnostics" },
     },
   },
   keys = {
@@ -26,6 +27,7 @@ return {
     -- General
     { "<leader>/", "<cmd>Commentary<CR>", desc = "Comment", mode = { "n", "v" } },
     { "<leader>qq", "<cmd>q!<CR>", desc = "Quit without saving" },
+    { "<leader>w", "<cmd>w<CR>", desc = "Save" },
     { "<leader>tl", function() vim.opt.list = not vim.opt.list:get() end, desc = "Toggle visible whitespace" },
 
     -- Window management
@@ -99,7 +101,15 @@ return {
     { "<leader>h9", function() require("harpoon.ui").nav_file(9) end, desc = "File 9" },
 
     -- REST
-    { "<leader>xr", "<cmd>call VrcQuery()<CR>", desc = "Run query" },
+    { "<leader>rr", "<cmd>call VrcQuery()<CR>", desc = "Run query" },
+
+    -- Diagnostics
+    { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+    { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
+    { "<leader>xs", "<cms>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
+    { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Lsp Def / ref / ... (Trouble)" },
+    { "<leader>xL", "<cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
+    { "<leader>xx", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
 
     -- LSP leader keymaps
     { "<leader>lf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", desc = "Format", mode = { "n", "v" } },
