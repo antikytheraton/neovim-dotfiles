@@ -27,7 +27,7 @@ return {
     -- General
     { "<leader>/", "<cmd>Commentary<CR>", desc = "Comment", mode = { "n", "v" } },
     { "<leader>qq", "<cmd>q!<CR>", desc = "Quit without saving" },
-    { "<leader>w", "<cmd>w<CR>", desc = "Save" },
+    { "<leader>ww", "<cmd>w<CR>", desc = "Save" },
     { "<leader>tl", function() vim.opt.list = not vim.opt.list:get() end, desc = "Toggle visible whitespace" },
 
     -- Window management
