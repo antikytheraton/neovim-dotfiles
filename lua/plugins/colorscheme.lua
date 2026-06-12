@@ -1,177 +1,111 @@
 -- Theme/Colorscheme (uncomment section for whichever theme you prefer or use your own)
--- Kanagawa Theme (Custom Palette)
--- return {
---   -- https://github.com/rebelot/kanagawa.nvim
---   'rebelot/kanagawa.nvim', -- You can replace this with your favorite colorscheme
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   opts = {
---     -- Replace this with your scheme-specific settings or remove to use the defaults
---     -- transparent = true,
---     background = {
---       -- light = "lotus",
---       dark = "wave", -- "wave, dragon"
---     },
---     colors = {
---       palette = {
---         -- Background colors
---         sumiInk0 = "#161616", -- modified
---         sumiInk1 = "#181818", -- modified
---         sumiInk2 = "#1a1a1a", -- modified
---         sumiInk3 = "#1F1F1F", -- modified
---         sumiInk4 = "#2A2A2A", -- modified
---         sumiInk5 = "#363636", -- modified
---         sumiInk6 = "#545454", -- modified
--- 
---         -- Popup and Floats
---         waveBlue1 = "#322C47", -- modified
---         waveBlue2 = "#4c4464", -- modified
--- 
---         -- Diff and Git
---         winterGreen = "#2B3328",
---         winterYellow = "#49443C",
---         winterRed = "#43242B",
---         winterBlue = "#252535",
---         autumnGreen = "#76A56A", -- modified
---         autumnRed = "#C34043",
---         autumnYellow = "#DCA561",
--- 
---         -- Diag
---         samuraiRed = "#E82424",
---         roninYellow = "#FF9E3B",
---         waveAqua1 = "#7E9CD8", -- modified
---         dragonBlue = "#7FB4CA", -- modified
--- 
---         -- Foreground and Comments
---         oldWhite = "#C8C093",
---         fujiWhite = "#F9E7C0", -- modified
---         fujiGray = "#727169",
---         oniViolet = "#BFA3E6", -- modified
---         oniViolet2 = "#BCACDB", -- modified
---         crystalBlue = "#8CABFF", -- modified
---         springViolet1 = "#938AA9",
---         springViolet2 = "#9CABCA",
---         springBlue = "#7FC4EF", -- modified
---         waveAqua2 = "#77BBDD", -- modified
--- 
---         springGreen = "#98BB6C",
---         boatYellow1 = "#938056",
---         boatYellow2 = "#C0A36E",
---         carpYellow = "#FFEE99", -- modified
--- 
---         sakuraPink = "#D27E99",
---         waveRed = "#E46876",
---         peachRed = "#FF5D62",
---         surimiOrange = "#FFAA44", -- modified
---         katanaGray = "#717C7C",
---       },
---     },
---   },
---   config = function(_, opts)
---     require('kanagawa').setup(opts) -- Replace this with your favorite colorscheme
---     vim.cmd("colorscheme kanagawa") -- Replace this with your favorite colorscheme
--- 
---     -- Custom diff colors
---     vim.cmd([[
---       autocmd VimEnter * hi DiffAdd guifg=#00FF00 guibg=#005500
---       autocmd VimEnter * hi DiffDelete guifg=#FF0000 guibg=#550000
---       autocmd VimEnter * hi DiffChange guifg=#CCCCCC guibg=#555555
---       autocmd VimEnter * hi DiffText guifg=#00FF00 guibg=#005500
---     ]])
--- 
---     -- Custom border colors
---     vim.cmd([[
---       autocmd ColorScheme * hi NormalFloat guifg=#F9E7C0 guibg=#1F1F1F
---       autocmd ColorScheme * hi FloatBorder guifg=#F9E7C0 guibg=#1F1F1F
---     ]])
---   end
--- }
 
--- Kanagawa Theme (Original)
--- return {
---   -- https://github.com/rebelot/kanagawa.nvim
---   'rebelot/kanagawa.nvim', -- You can replace this with your favorite colorscheme
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   opts = {
---     -- Replace this with your scheme-specific settings or remove to use the defaults
---     -- transparent = true,
---     background = {
---       -- light = "lotus",
---       dark = "wave", -- "wave, dragon"
---     },
---   },
---   config = function(_, opts)
---     require('kanagawa').setup(opts) -- Replace this with your favorite colorscheme
---     vim.cmd("colorscheme kanagawa") -- Replace this with your favorite colorscheme
---   end
--- }
+local light_neofusion = {
+  -- background ramp (inverted: dark→light)
+  dark0 = "#EDF4F7",
+  dark1 = "#DFF0F5",
+  dark2 = "#C8E4EE",
+  dark3 = "#A8D0E0",
+  dark4 = "#7AAEC8",
+  -- foreground/accent ramp (inverted: light→dark)
+  light0 = "#06364B",
+  light1 = "#06364B",
+  light2 = "#08435E",
+  light3 = "#0A5070",
+  light4 = "#22536f",
+  -- lava red family — darkened for light bg contrast
+  bright_red = "#C82800",
+  bright_yellow = "#C82800",
+  bright_orange = "#C82800",
+  neutral_red = "#C82800",
+  neutral_yellow = "#C82800",
+  neutral_orange = "#1A7ACC",
+  faded_red = "#C82800",
+  faded_yellow = "#D04A20",
+  faded_orange = "#D04A20",
+  dark_red = "#8C1A18",
+  light_red = "#E05030",
+  -- ice blue family — darkened for light bg contrast
+  bright_green = "#1A7ACC",
+  neutral_green = "#1A7ACC",
+  neutral_aqua = "#0A6080",
+  faded_green = "#3A5A18",
+  faded_aqua = "#3A5A18",
+  dark_green = "#3A5A18",
+  light_green = "#5A7A10",
+  dark_aqua = "#A8D0E0",
+  light_aqua = "#C8E8B0",
+  -- magenta — darkened
+  bright_purple = "#A01880",
+  neutral_purple = "#A01880",
+  faded_purple = "#A01880",
+  -- blue (neutral surfaces)
+  bright_blue = "#0A1E30",
+  bright_aqua = "#0A1E30",
+  neutral_blue = "#1A5070",
+  faded_blue = "#C8E4EE",
+  -- gray
+  gray = "#4A7A90",
+}
 
--- Tokyo Night Theme
--- return {
---   -- https://github.com/folke/tokyonight.nvim
---   'folke/tokyonight.nvim', -- You can replace this with your favorite colorscheme
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   opts = {
---     -- Replace this with your scheme-specific settings or remove to use the defaults
---     -- transparent = true,
---     style = "night", -- other variations "storm, night, moon, day"
---   },
---   config = function(_, opts)
---     require('tokyonight').setup(opts) -- Replace this with your favorite colorscheme
---     vim.cmd("colorscheme tokyonight") -- Replace this with your favorite colorscheme
---   end
--- }
-
--- Catppuccin Theme
--- return {
---   -- https://github.com/catppuccin/nvim
---   'catppuccin/nvim',
---   name = "catppuccin", -- name is needed otherwise plugin shows up as "nvim" due to github URI
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   opts = {
---   --   -- Replace this with your scheme-specific settings or remove to use the defaults
---     -- transparent = true,
---     flavour = "mocha", -- "latte, frappe, macchiato, mocha"
---   },
---   config = function(_, opts)
---     require('catppuccin').setup(opts) -- Replace this with your favorite colorscheme
---     vim.cmd("colorscheme catppuccin") -- Replace this with your favorite colorscheme
---   end
--- }
-
--- Sonokai Theme
--- return {
---   -- https://github.com/sainnhe/sonokai
---   'sainnhe/sonokai',
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   config = function(_, opts)
---     vim.g.sonokai_style = "default" -- "default, atlantis, andromeda, shusia, maia, espresso"
---     vim.cmd("colorscheme sonokai") -- Replace this with your favorite colorscheme
---   end
--- }
-
--- One Nord Theme
--- return {
---   -- https://github.com/rmehri01/onenord.nvim
---   'rmehri01/onenord.nvim',
---   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
---   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
---   config = function(_, opts)
---     vim.cmd("colorscheme onenord") -- Replace this with your favorite colorscheme
---   end
--- }
+local teenKOii_light = {
+  -- background ramp: cool industrial gray (chassis surface steps)
+  dark0 = "#DCDCDA",
+  dark1 = "#D0D0CE",
+  dark2 = "#C4C4C2",
+  dark3 = "#B8B8B6",
+  dark4 = "#ACACAA",
+  -- foreground ramp: pushed darker for contrast
+  light0 = "#0A0A0A",
+  light1 = "#0A0A0A",
+  light2 = "#141412",
+  light3 = "#1E1E1C",
+  light4 = "#2A2A28",
+  -- lava orange family (unchanged)
+  bright_red = "#E8541A",
+  bright_yellow = "#E8541A",
+  bright_orange = "#E8541A",
+  neutral_red = "#C84000",
+  neutral_yellow = "#C84000",
+  neutral_orange = "#C84000",
+  faded_red = "#A83800",
+  faded_yellow = "#A83800",
+  faded_orange = "#A83800",
+  dark_red = "#7A2800",
+  light_red = "#FF7A3D",
+  -- no green/aqua — mapped to dark grays (much darker now)
+  bright_green = "#1E1E1C",
+  neutral_green = "#141412",
+  faded_green = "#2A2A28",
+  dark_green = "#383836",
+  light_green = "#444442",
+  bright_aqua = "#585856",
+  neutral_aqua = "#4A4A48",
+  faded_aqua = "#3E3E3C",
+  dark_aqua = "#686866",
+  light_aqua = "#747472",
+  -- blue → near-black (maximum contrast for UI chrome)
+  bright_blue = "#0A0A0A",
+  neutral_blue = "#141412",
+  faded_blue = "#1E1E1C",
+  -- purple → orange (unchanged)
+  bright_purple = "#FF7A3D",
+  neutral_purple = "#E8541A",
+  faded_purple = "#C84000",
+  -- gray → true mid, readable on both ends
+  gray = "#505050",
+}
 
 -- Neofusion Theme
 return {
-	"diegoulloao/neofusion.nvim",
-  lazy = false, -- We want the colorscheme to load immediately when starting Neovim
+  "diegoulloao/neofusion.nvim",
+  lazy = false,    -- We want the colorscheme to load immediately when starting Neovim
   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
-	config = function(_, opts)
-    --require("neofusion").setup()
+  config = function(_, opts)
+    require("neofusion").setup({
+      -- palette_overrides = light_neofusion
+      palette_overrides = teenKOii_light
+    })
     vim.cmd("colorscheme neofusion") -- Replace this with your favorite colorscheme
   end
 }
