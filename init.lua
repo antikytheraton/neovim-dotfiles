@@ -17,11 +17,11 @@ vim.g.mapleader = ","
 
 -- Initialize lazy with dynamic loading of anything in the plugins directory
 require("lazy").setup("plugins", {
-   change_detection = {
+  change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
     notify = false, -- turn off notifications whenever plugin changes are made
   },
-  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json", -- moves it to ~/.local/share/nvim/
+  -- lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json", -- moves it to ~/.local/share/nvim/
 })
 
 -- These modules are not loaded by lazy

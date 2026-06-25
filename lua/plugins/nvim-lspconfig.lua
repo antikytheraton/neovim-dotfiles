@@ -19,9 +19,15 @@ return {
     { "folke/neodev.nvim",             opts = {} },
     { "aquasecurity/vim-tfsec" },
     { "saghen/blink.cmp" },
+    { "mkindberg/ghostty-ls",          config = true },
   },
   config = function()
-    require("mason").setup()
+    require("mason").setup({
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:mkindberg/ghostty-ls",
+      },
+    })
     require("mason-lspconfig").setup({
       ensure_installed = {
         "bashls",
@@ -134,17 +140,5 @@ return {
       opts.border = opts.border or "rounded" -- Set border to rounded
       return open_floating_preview(contents, syntax, opts, ...)
     end
-
-    local function setup_ghostty_lsp()
-      if vim.fn.expand("%:p") == vim.fs.normalize("~/.config/ghostty/config") then
-        vim.lsp.start({
-          name = "ghostty-lsp",
-          cmd = { "ghostty-lsp" },
-          root_dir = vim.fs.normalize("~/.config/ghostty/config")
-        })
-      end
-    end
-
-    vim.api.nvim_create_autocmd("BufRead", { pattern = "*", callback = setup_ghostty_lsp })
   end,
 }

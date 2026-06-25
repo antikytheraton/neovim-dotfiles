@@ -128,7 +128,7 @@ return {
               end,
             },
             should_show_items = function()
-              return vim.tbl_contains({ "gitcommit", "markdown", "yaml", "toml"  }, vim.o.filetype)
+              return vim.tbl_contains({ "gitcommit", "jjdescription", "markdown", "yaml", "toml"  }, vim.o.filetype)
             end,
           },
           tmux = {
