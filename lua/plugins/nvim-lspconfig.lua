@@ -45,6 +45,7 @@ return {
         "gopls",
         "ruff",
         -- 'tfsec',
+        "jdtls",
       },
       automatic_enable = true,
     })
