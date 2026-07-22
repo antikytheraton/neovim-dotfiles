@@ -106,7 +106,7 @@ return {
     -- Diagnostics
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
     { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
-    { "<leader>xs", "<cms>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
+    { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
     { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Lsp Def / ref / ... (Trouble)" },
     { "<leader>xL", "<cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
     { "<leader>xx", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
@@ -154,11 +154,11 @@ return {
     km("n", "<C-p>", require("telescope.builtin").find_files, { desc = "Find files" })
 
     -- LSP
-    km("n", "gd", "<cmd>Trouble lsp_definitions<CR>", { desc = "Definition" })
-    km("n", "gD", "<cmd>Trouble lsp_declarations<CR>", { desc = "Declaration" })
-    km("n", "gi", "<cmd>Trouble lsp_implementations<CR>", { desc = "Implementation" })
-    km("n", "gt", "<cmd>Trouble lsp_type_definitions<CR>", { desc = "Type definition" })
-    km("n", "gr", "<cmd>Trouble lsp_references<CR>", { desc = "References" })
+    km("n", "gd", function() require("trouble").open("lsp_definitions") end, { desc = "Definition" })
+    km("n", "gD", function() require("trouble").open("lsp_declarations") end, { desc = "Declaration" })
+    km("n", "gi", function() require("trouble").open("lsp_implementations") end, { desc = "Implementation" })
+    km("n", "gt", function() require("trouble").open("lsp_type_definitions") end, { desc = "Type definition" })
+    km("n", "gr", function() require("trouble").open("lsp_references") end, { desc = "References" })
     km("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
     km("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
     km("n", "[q", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Prev diagnostic" })
