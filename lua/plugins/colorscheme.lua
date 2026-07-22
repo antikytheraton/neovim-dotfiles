@@ -104,7 +104,7 @@ return {
   config = function(_, opts)
     require("neofusion").setup({
       -- palette_overrides = light_neofusion
-      -- palette_overrides = teenKOii_light
+      palette_overrides = teenKOii_light
     })
     vim.cmd("colorscheme neofusion") -- Replace this with your favorite colorscheme
   end
